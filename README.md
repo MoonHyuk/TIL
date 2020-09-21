@@ -1,1 +1,3 @@
 # TIL
+
+[JavaScript](javascript.md)
