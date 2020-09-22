@@ -3,7 +3,7 @@
 - [var vs let](#var-vs-let)
 - [유용한 Array 메소드](#유용한-Array-메소드)
 - [Arrow Functions](#Arrow-Functions)
-- [Promises](#Promises)
+- [Promises, Async/Await](#Promises,-Async/Await)
 
 ---
 
@@ -206,4 +206,107 @@ arr를 순회하면서 인자로 넘겨준 함수를 실행하고, 그 함수의
 
 ---
 
-## Promises
+## Promises, Async/Await
+
+### Promises
+
+```js
+const p1 = fetch("https://cat-fact.herokuapp.com/facts");
+
+console.log("hi!");
+```
+
+Javascript의 `fetch` 함수는 비동기로 실행되고 `Promise`를 반환한다.  
+fetch가 완료되기 전에 `hi`가 먼저 출력된다.
+
+```js
+const useThen = () => {
+  p1.then((res) => res.json()).then((json) => {
+    console.log(json);
+  });
+};
+```
+
+fetch 함수의 결과를 받고 싶다면 `.then()`, `.catch()`, `.finally()`를 사용한다.
+
+### Await/Async
+
+`.then`대신에 `async/await`을 사용할 수도 있다.  
+`async/await`을 사용하면 몇가지 장점이 있다.
+
+1. 가독성
+
+   ```js
+   const useAwait = async () => {
+     const res = await p1;
+     const json = await res.json();
+     console.log(json);
+   };
+   ```
+
+   위의 `useThen`과 같은 동작을 하는 코드이지만 더 보기 쉽다.  
+    특히 이전 비동기 코드의 결과를 사용해 또 다른 비동기 호출을 해야할 때 `async/await`을 사용하면 더 읽기 쉬운 코드를 쓸 수 있다.
+
+   ```js
+   // 읽기 어렵다
+   const useThen = () => {
+     p1.then((res) => res.json()).then((json) => {
+       const firstId = json["all"][0]._id;
+       fetch("https://cat-fact.herokuapp.com/facts/" + firstId)
+         .then((res) => res.json())
+         .then((json) => {
+           console.log(json);
+         });
+     });
+   };
+
+   // 읽기 쉽다
+   const useAwait = async () => {
+     const res = await p1;
+     const json = await res.json();
+     const firstId = json["all"][0]._id;
+
+     const res2 = await fetch(
+       "https://cat-fact.herokuapp.com/facts/" + firstId
+     );
+     const json2 = await res2.json();
+     console.log(json2);
+   };
+   ```
+
+2. 예외 처리
+
+   ```js
+   const useThen = () => {
+     try {
+       // ...
+       p1.then((res) => res.json())
+         .then((json) => console.log(json))
+         .catch((e) => console.log("error occurs inside promise. " + e));
+     } catch (e) {
+       console.log("error outside promise. " + e);
+     }
+   };
+   ```
+
+   `.then()`을 사용할 경우 Promise 내부에서 발생한 오류는 `.catch()`를 통해 처리해야한다.
+   하지만 `.catch()`로는 Promise 외부에서 발생한 오류는 잡을 수 없으므로, 그를 위해선 별도의 `try/catch`문을 사용해야 한다.
+
+   위의 코드는 누가봐도 복잡해 보인다.
+
+   ```js
+   const useAwait = async () => {
+     try {
+       // ...
+       const res = await p1;
+       const json = await res.json();
+       console.log(json);
+     } catch (e) {
+       console.log("error occurs " + e);
+     }
+   };
+   ```
+
+   `async/await`로는 하나의 `try/catch`문으로 Promise 내부와 외부의 오류를 잡아낼 수 있다.
+
+---
