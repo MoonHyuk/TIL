@@ -3,7 +3,7 @@
 - [var vs let](#var-vs-let)
 - [유용한 Array 메소드](#유용한-Array-메소드)
 - [Arrow Functions](#Arrow-Functions)
-- [Promises, Async/Await](#Promises,-Async/Await)
+- [Promises, Async/Await](#Promises-AsyncAwait)
 
 ---
 
