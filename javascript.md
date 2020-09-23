@@ -4,6 +4,7 @@
 - [유용한 Array 메소드](#유용한-Array-메소드)
 - [Arrow Functions](#Arrow-Functions)
 - [Promises, Async/Await](#Promises-AsyncAwait)
+- [Destructuring assignment](#Destructuring-assignment)
 
 ---
 
@@ -308,5 +309,135 @@ fetch 함수의 결과를 받고 싶다면 `.then()`, `.catch()`, `.finally()`�
    ```
 
    `async/await`로는 하나의 `try/catch`문으로 Promise 내부와 외부의 오류를 잡아낼 수 있다.
+
+---
+
+## Destructuring assignment
+
+한국어로는 `구조 분해 할당`이라고 한다.
+
+### 배열 구조 분해
+
+```js
+let [one, two, three] = [1, 2, 3];
+
+console.log(one, two, three); // 1 2 3
+```
+
+선언부와 분리할 수도 있다.
+
+```js
+let one, two;
+
+[one, two] = [1, 2, 3];
+
+console.log(one, two); // 1 2 3
+```
+
+만약 변수의 수가 배열의 크기보다 크다면 남은 변수들은 undefined가 된다.  
+undefined가 나오는 걸 원치 않을 땐 default를 지정할 수도 있다.
+
+```js
+let [one, two] = [1];
+
+console.log(one, two); // 1 undefined
+
+let [three, four = 4] = [3];
+
+console.log(three, four); // 3 4
+```
+
+특정 값들을 무시하고 싶을 땐 `,`를 추가한다.
+
+```js
+let [one, , three] = [1, 2, 3];
+
+console.log(one, three); // 1 3
+```
+
+배열 구조 분해를 사용하면 swap이 쉬워진다.
+
+```js
+let one = 1;
+let two = 2;
+let three = 3;
+
+[one, two, three] = [three, one, two];
+
+console.log(one, two, three); // 3 1 2
+```
+
+### 객체 구조 분해
+
+```js
+const person = {
+  name: "moon",
+  favorites: {
+    color: "black",
+    tvShow: "Mr. robot",
+  },
+};
+
+const {
+  name,
+  favorites: { tvShow },
+} = person;
+
+console.log(name); // moon
+console.log(tvShow); // Mr. robot
+```
+
+선언부와 분리할 수도 있다. 단, 이때는 앞뒤로 괄호로 닫아줘야 한다.  
+(괄호 전에 세미콜론이 없다면 함수 호출로 인식되니 주의하자.)
+
+```js
+let name, tvShow;
+
+({
+  name,
+  favorites: { tvShow },
+} = person);
+```
+
+속성이 없을수도 있을 땐 기본값을 지정해주면 된다.
+
+```js
+const { name, education: { univ = "Blah Blah" } = {} } = person;
+
+console.log(name); // moon
+console.log(univ); // Blah Blah
+```
+
+객체 속성과 다른 이름으로 변수를 만들 수도 있다.
+
+```js
+const { name: userName } = person;
+
+console.log(userName);
+```
+
+객체를 인자로 받는 함수를 만드는 경우, 객체 속성들의 기본값을 지정해줄 때 매우 편리해진다.
+
+```js
+// 코드 출처: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
+function drawES5Chart(options) {
+  options = options === undefined ? {} : options;
+  var size = options.size === undefined ? "big" : options.size;
+  var cords = options.cords === undefined ? { x: 0, y: 0 } : options.cords;
+  var radius = options.radius === undefined ? 25 : options.radius;
+  console.log(size, cords, radius);
+  // 이제 드디어 차트 그리기 수행
+}
+
+function drawES2015Chart({
+  size = "big",
+  cords = { x: 0, y: 0 },
+  radius = 25,
+} = {}) {
+  console.log(size, cords, radius);
+  // 차트 그리기 수행
+}
+```
 
 ---
