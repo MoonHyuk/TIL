@@ -5,6 +5,7 @@
 - [Arrow Functions](#Arrow-Functions)
 - [Promises, Async/Await](#Promises-AsyncAwait)
 - [Destructuring assignment](#Destructuring-assignment)
+- [Spread](#Spread)
 
 ---
 
@@ -441,3 +442,83 @@ function drawES2015Chart({
 ```
 
 ---
+
+### Spread
+
+Spread는 객체 또는 배열을 펼쳐준다.
+
+```js
+const a = [1, 2, 3];
+
+console.log(...a); // 1 2 3
+```
+
+Spread의 몇가지 쓰임새에 대해 알아보자.
+
+1. 함수 호출에서
+
+   ```js
+   sum = (x, y, z) => x + y + z;
+
+   const input = [1, 2, 3];
+
+   console.log(sum(...input)); // 6
+   ```
+
+2. new 연산자에서
+
+   ```js
+   const dateFields = [1970, 0, 1];
+   const d = new Date(...dateFields);
+
+   console.log(d); // Thu Jan 01 1970 00:00:00 GMT+0900 (대한민국 표준시)
+   ```
+
+3. 배열 또는 객체 복사
+
+   ```js
+   const a = [1, 2, 3];
+
+   let b = [...a];
+   b[0] = 4;
+
+   console.log(a); // [1, 2, 3]
+   console.log(b); // [4, 2, 3]
+
+   const c = {
+     name: "moon",
+     job: "developer",
+   };
+
+   let d = { ...c };
+   d.job = null;
+
+   console.log(c); // { name: "moon", job: "developer"}
+   console.log(d); // { name: "moon", job: null }
+   ```
+
+   일종의 깊은 복사를 하는 쉬운 방법으로 사용할 수 있다. 단 배열이나 객체의 깊이가 2이상이 되면 깊은 복사가 되지 않는다. 자세한 내용은 후술.
+
+4. 배열 또는 객체를 합치거나 값 추가하기
+
+   ```js
+   const a = [1, 2, 3];
+   const b = [4, 5, 6];
+
+   const c = [...a, ...b];
+   console.log(c); // [1, 2, 3, 4, 5, 6]
+
+   const d = [0, ...c, 7, 8];
+   console.log(d); // [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+   const e = {
+     x: 1,
+   };
+   const f = {
+     y: 2,
+   };
+
+   const g = { ...e, ...f };
+
+   console.log(g); // { x: 1, y: 2 }
+   ```
