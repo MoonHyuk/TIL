@@ -605,7 +605,7 @@ Javascript에서 배열이나 객체를 값복사(deep clone)을 하는 방법�
 
    const a = [1, [2], "hello", true, () => {}];
 
-   const b = JSON.parse(JSON.stringify(a));
+   const b = deepClone(a); // [1, [2], "hello", true, () => {}]
    ```
 
 ---
