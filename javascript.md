@@ -6,6 +6,8 @@
 - [Promises, Async/Await](#Promises-AsyncAwait)
 - [Destructuring assignment](#Destructuring-assignment)
 - [Spread](#Spread)
+- [Rest](#Rest)
+- [Deep Clone](#Deep-Clone)
 
 ---
 
@@ -443,9 +445,9 @@ function drawES2015Chart({
 
 ---
 
-### Spread
+## Spread
 
-Spread는 객체 또는 배열을 펼쳐준다.
+Spread 연산자(`...`)는 iterable한 것들을 펼쳐준다.
 
 ```js
 const a = [1, 2, 3];
@@ -497,7 +499,7 @@ Spread의 몇가지 쓰임새에 대해 알아보자.
    console.log(d); // { name: "moon", job: null }
    ```
 
-   일종의 깊은 복사를 하는 쉬운 방법으로 사용할 수 있다. 단 배열이나 객체의 깊이가 2이상이 되면 깊은 복사가 되지 않는다. 자세한 내용은 후술.
+   일종의 깊은 복사를 하는 쉬운 방법으로 사용할 수 있다. 단 배열이나 객체의 깊이가 2이상이 되면 깊은 복사가 되지 않는다. 자세한 내용은 [Deep Clone](#Deep-Clone) 참고.
 
 4. 배열 또는 객체를 합치거나 값 추가하기
 
@@ -522,3 +524,88 @@ Spread의 몇가지 쓰임새에 대해 알아보자.
 
    console.log(g); // { x: 1, y: 2 }
    ```
+
+---
+
+## Rest
+
+---
+
+## Deep Clone
+
+어떤 배열이나 객체의 값을 복사하여 새로운 변수에 넣고 싶으면서, 새로운 변수의 값이 바뀌더라도 기존 변수는 유지되었으면 하는 때가 있다.
+
+일반적인 `=` 연산자는 배열이나 객체의 값이 아닌 참조를 복사하므로 도움이 되지 않는다.
+
+```js
+const a = [1, 2, 3];
+const b = a;
+
+b[0] = 4;
+console.log(a); // [4, 2, 3]
+```
+
+Javascript에서 배열이나 객체를 값복사(deep clone)을 하는 방법들과 그 차이를 비교해보겠다.
+
+1. 배열이나 객체의 깊이가 1임이 확실한 상황이라면
+
+   배열이나 객체의 깊이가 1임을 장담할 수 있다면 `Object.assign()`이나 `spread` 연산자를 사용하는 게 좋은 선택이다.
+
+   ```js
+   const a = [1, 2, [3]];
+
+   // 아래 두 코드는 결과가 동일하다.
+   const b = Object.assign([], a);
+   const b = [...a];
+
+   b[0] = 999;
+   b[2][0] = 999;
+
+   console.log(a[0]); // 1 (영향 받지 않음)
+   console.log(b[0]); // 999
+
+   console.log(a[2][0]); // 999 (영향 받음)
+   console.log(b[2][0]); // 999
+   ```
+
+   하지만 위 예시에서 볼 수 있듯 깊이 2 이상 부터는 deep clone이 되지 않는다.
+
+2. 배열이나 객체가 다차원이나, 값들이 단순 타입인 경우
+
+   만약 모든 값들의 타입(또는 값)이 `String`, `Number`, `Boolean`, `BigInt`, `null` 중 하나라면 `JSON.parse(JSON.stringify())` 를 사용할 수도 있다.
+
+   ```js
+   const a = [1, [2], "hello", true, () => {}];
+
+   const b = JSON.parse(JSON.stringify(a));
+
+   console.log(b); // [1, [2], "hello", true, null] (함수가 사라졌다!)
+
+   b[1][0] = 999;
+   console.log(a[1][0]); // 2 (다차원에서도 영향받지 않음)
+   console.log(b[1][0]); // 999
+   ```
+
+   위 예시에서 `b[1][0]`를 바꿨으나 `a[1][0]`은 영향을 받지 않았다. 하지만 마지막 값이었던 `() => {}`가 `null`이 되어버렸다.
+
+3. 앞 두가지 상황이 아니라면
+
+   Deep clone 라이브러리를 찾아보거나 필요한 만큼 직접 구현한다.
+
+   재귀적으로 spread 연산자를 사용하여 중첩 배열을 deep clone하는 함수를 만들었다. (배열에서만 작동되는 아주 단순한 코드이니 실제 상황에선 훨씬 더 복잡해질 것이다.)
+
+   ```js
+   const deepClone = (source) => {
+     if (Array.isArray(source)) {
+       return [...source].map((c) => deepClone(c));
+     } else {
+       return source;
+     }
+   };
+
+   const a = [1, [2], "hello", true, () => {}];
+
+   const b = JSON.parse(JSON.stringify(a));
+   ```
+
+---
