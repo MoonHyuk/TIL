@@ -529,6 +529,75 @@ Spread의 몇가지 쓰임새에 대해 알아보자.
 
 ## Rest
 
+Rest(`...`) 연산자는 [spread](#Spread) 연산자와 같은 모양이나 정반대의 기능을 한다. [구조 분해 할당](#Destructuring-assignment)과 함께 쓰이며 구조 분해 할당 시 남은 값들을 하나의 변수에 넣어준다.
+
+```js
+const [a, ...b] = [1, 2, 3, 4];
+
+console.log(a); // 1
+console.log(b); // [2, 3, 4]
+
+const me = {
+  name: "moon",
+  job: "dev",
+  age: 99,
+};
+
+const { name, ...rest } = me;
+
+console.log(name); // moon
+console.log(rest); // { job: "dev", age": 99 }
+```
+
+Rest 연산자는 기존 `arguments` 객체를 대체할 수 있다.
+
+```js
+const sum1 = function () {
+  const args = Array.from(arguments);
+
+  return args.reduce((acc, curr) => acc + curr);
+};
+
+const sum2 = (...args) => args.reduce((acc, curr) => acc + curr);
+
+console.log(sum1(1, 2, 3, 4, 5)); // 15
+console.log(sum2(1, 2, 3, 4, 5)); // 15
+```
+
+특히 `arguments` 객체는 Array가 아닌 Array-like objcet이므로 `map`, `reduce` 등의 Array 메소드를 사용하려면 `Array.from()`으로 새 배열을 만들어줘야 했지만 rest 연산자를 사용하면 그럴 필요가 없어진다.
+
+객체에서 특정 프로퍼티를 삭제하고 싶을 때 rest 연산자를 이용할 수도 있다.
+
+```js
+const user = {
+  name: "moon",
+  password: "********",
+  job: "dev",
+};
+
+const deletePassword = ({ password, ...rest }) => rest;
+
+console.log(deletePassword(user)); // { name: "moon", job: "dev" }
+```
+
+Spread 연산자와 함께 사용하면 더 재밌는 일들도 할 수 있다.
+
+```js
+const user = {
+  name: "moon",
+  password: "********",
+  job: "dev",
+};
+
+// 이 짧은 함수에 구조 분해 할당, rest, spread가 모두 사용되었다!!
+// user 객체에서 name키를 id로 바꾸고 password를 삭제한다
+const manipulateUser = ({ name: id, password, ...rest }) => {
+  return { id, ...rest };
+};
+
+console.log(manipulateUser(user)); // { id: "moon", job: "dev" }
+```
+
 ---
 
 ## Deep Clone
@@ -549,7 +618,7 @@ Javascript에서 배열이나 객체를 값복사(deep clone)을 하는 방법�
 
 1. 배열이나 객체의 깊이가 1임이 확실한 상황이라면
 
-   배열이나 객체의 깊이가 1임을 장담할 수 있다면 `Object.assign()`이나 `spread` 연산자를 사용하는 것도 좋은 선택이다.
+   배열이나 객체의 깊이가 1임을 장담할 수 있다면 `Object.assign()`이나 [spread](#spread) 연산자를 사용하는 것도 좋은 선택이다.
 
    ```js
    const a = [1, 2, [3]];
