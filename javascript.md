@@ -208,6 +208,41 @@ arr를 순회하면서 인자로 넘겨준 함수를 실행하고, 그 함수의
 
 ## Arrow Functions
 
+Arrow function의 형식은 이렇다.
+
+```js
+const func = (x, y) => {
+  return x + y;
+};
+```
+
+만약 함수의 바디가 return 문 한 줄이라면 {}를 생략해도 된다.
+
+```js
+const func = (x, y) => x + y;
+```
+
+또 인자가 하나뿐이라면 ()도 생략 가능하다.
+
+```
+const func = x => x * x;
+```
+
+기존 함수와 비교하여 코드가 얼마나 짧아졌는지 보자.
+
+```js
+function func(x) {
+  return x * x;
+}
+```
+
+만약 객체를 반환하고 싶다면 객체 앞뒤로 ()를 감싼다.
+
+```js
+// const func = () => { a: 1 }; 이 코드는 {}를 함수의 body라고 생각하기 때문에 오류가 난다.
+const func = () => ({ a: 1 });
+```
+
 ---
 
 ## Promises, Async/Await
@@ -591,9 +626,7 @@ const user = {
 
 // 이 짧은 함수에 구조 분해 할당, rest, spread가 모두 사용되었다!!
 // user 객체에서 name키를 id로 바꾸고 password를 삭제한다
-const manipulateUser = ({ name: id, password, ...rest }) => {
-  return { id, ...rest };
-};
+const manipulateUser = ({ name: id, password, ...rest }) => ({ id, ...rest });
 
 console.log(manipulateUser(user)); // { id: "moon", job: "dev" }
 ```
