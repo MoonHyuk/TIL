@@ -243,6 +243,46 @@ function func(x) {
 const func = () => ({ a: 1 });
 ```
 
+Arrow function은 기존 함수와 생긴 모양 외에도 몇가지 차이점이 있다.  
+우선 arrow function 안에서 `this`는 기존 함수에서의 `this`와 다르다. 자세한 설명은 추후 추가.
+
+```js
+const user1 = {
+  name: "moonhyuk",
+  getName: function () {
+    return this.name;
+  },
+};
+
+console.log(user1.getName()); // moonhyuk
+
+const user2 = {
+  name: "moonhyuk",
+  getName: () => {
+    return this.getName;
+  },
+};
+
+console.log(user2.getName()); // undefined
+```
+
+또한 arrow function에서는 `arguments` 객체를 사용할 수 없다. 대신 [rest](#Rest) 연산자를 사용하면 된다.
+
+```js
+func1 = function () {
+  console.log(arguments);
+};
+
+func1(1, 2); // { 0: 1, 1: 2}
+
+func2 = (...args) => {
+  // console.log(arguments); error: Uncaught ReferenceError: arguments is not defined
+  console.log(args);
+};
+
+func2(1, 2); // [1, 2]
+```
+
 ---
 
 ## Promises, Async/Await
