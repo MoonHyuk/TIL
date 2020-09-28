@@ -8,6 +8,7 @@
 - [Spread](#Spread)
 - [Rest](#Rest)
 - [Deep Clone](#Deep-Clone)
+- [Set](#Set)
 
 ---
 
@@ -753,3 +754,26 @@ Javascript에서 배열이나 객체를 값복사(deep clone)을 하는 방법�
    ```
 
 ---
+
+## Set
+
+```js
+const s = new Set([1, 2, 2, 2, 3, 3, 4]);
+
+s.add(5);
+s.delete(1);
+
+console.log(s.has(2)); // true
+
+s.forEach((x) => {
+  console.log(x);
+});
+// 2
+// 3
+// 4
+// 5
+
+s.clear();
+
+console.log(s.size); // 0
+```
