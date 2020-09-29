@@ -10,7 +10,7 @@
 - [Rest](#Rest)
 - [Deep Clone](#Deep-Clone)
 - [Set](#Set)
-- [??](#??)
+- [??](#Nullish-coalescing-operator-)
 
 ---
 
@@ -826,7 +826,7 @@ s.clear();
 console.log(s.size); // 0
 ```
 
-## ??
+## Nullish coalescing operator ??
 
 `??` 연산자는 왼쪽 피연산자가 `null` 또는 `undefined`이면 오른쪽 피연산자를 반환하고, 그렇지 않으면 왼쪽 피연산자를 반환한다.
 
