@@ -10,6 +10,7 @@
 - [Rest](#Rest)
 - [Deep Clone](#Deep-Clone)
 - [Set](#Set)
+- [??](#??)
 
 ---
 
@@ -824,3 +825,20 @@ s.clear();
 
 console.log(s.size); // 0
 ```
+
+## ??
+
+`??` 연산자는 왼쪽 피연산자가 `null` 또는 `undefined`이면 오른쪽 피연산자를 반환하고, 그렇지 않으면 왼쪽 피연산자를 반환한다.
+
+```js
+let a;
+let b = null;
+let c = false;
+
+console.log(a ?? "hello"); // hello
+console.log(b ?? "foo"); // foo
+console.log(c ?? "bar"); // false
+console.log(c || "baz"); // baz
+```
+
+`||` 연산자와 다른 점은 `||` 연산자는 왼쪽 피연산자가 false 값으로 인식 되는 것들(`false`, `null`, `undefined`, `0`, `""` 등)인지를 확인하는 반면 `??` 연산자는 오직 `null` 또는 `undefined`인지를 확인한다.
