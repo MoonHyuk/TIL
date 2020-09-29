@@ -1,6 +1,7 @@
 ## 목차
 
 - [var vs let](#var-vs-let)
+- [유용한 String 메소드](#유용한-String-메소드)
 - [유용한 Array 메소드](#유용한-Array-메소드)
 - [Arrow Functions](#Arrow-Functions)
 - [Promises, Async/Await](#Promises-AsyncAwait)
@@ -98,6 +99,52 @@
 
   console.log(a); // 1
   ```
+
+---
+
+## 유용한 String 메소드
+
+### includes
+
+문자열이 다른 문자열을 포함하고 있는지 검사한다.
+
+```js
+const str = "hello world!";
+
+console.log(str.includes("world")); // true
+console.log(str.includes("bye")); // false
+```
+
+### padStart, padEnd
+
+문자열의 길이가 첫번째 인자에 있는 수 만큼 될 때까지 두번째 인자에 있는 문자열을 이어붙인다.
+
+```js
+const str = "그래서 말인데";
+
+console.log(str.padStart(15, "음...")); // 음...음...그래서 말인데
+
+console.log(str.padEnd(15, ".")); // 그래서 말인데........
+```
+
+```js
+const minutes = "3";
+
+console.log(minutes.padStart(2, "0")); // 03
+```
+
+### trim, trimStart, trimEnd
+
+문자열 앞/뒤에 있는 공백을 지워준다.
+
+```js
+const str = `
+                    hello world!
+
+`;
+
+console.log(str.trim()); // hello world!
+```
 
 ---
 
