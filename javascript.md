@@ -751,12 +751,13 @@ Javascript에서 배열이나 객체를 값복사(deep clone)을 하는 방법�
 
 1. 배열이나 객체의 깊이가 1임이 확실한 상황이라면
 
-   배열이나 객체의 깊이가 1임을 장담할 수 있다면 `Object.assign()`이나 [spread](#spread) 연산자를 사용하는 것도 좋은 선택이다.
+   배열이나 객체의 깊이가 1임을 장담할 수 있다면 `Object.create()`, `Object.assign()`또는 [spread](#spread) 연산자를 사용하는 것도 좋은 선택이다.
 
    ```js
    const a = [1, 2, [3]];
 
-   // 아래 두 코드는 결과가 동일하다.
+   // 아래 코드들은 결과가 동일하다.
+   const b = Object.create(a);
    const b = Object.assign([], a);
    const b = [...a];
 
