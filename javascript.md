@@ -11,6 +11,7 @@
 - [Deep Clone](#Deep-Clone)
 - [Set](#Set)
 - [??](#Nullish-coalescing-operator-)
+- [?.](#Optional-Chaining-.)
 
 ---
 
@@ -842,3 +843,46 @@ console.log(c || "baz"); // baz
 ```
 
 `||` 연산자와 다른 점은 `||` 연산자는 왼쪽 피연산자가 false 값으로 인식 되는 것들(`false`, `null`, `undefined`, `0`, `""` 등)인지를 확인하는 반면 `??` 연산자는 오직 `null` 또는 `undefined`인지를 확인한다.
+
+---
+
+## Optional Chaining ?.
+
+객체의 프로퍼티에 접근할 때 이런 오류를 많이 접해봤을 것이다.
+
+```js
+const obj = {
+  a: {
+    c: 1,
+  },
+};
+
+console.log(obj.b.c); // error: Uncaught TypeError: Cannot read property 'c' of undefined
+```
+
+오류를 피하기 위해 프로퍼티가 있는지를 먼저 검사한다.
+
+```js
+if (obj.b && obj.b.c) {
+  console.log(obj.b.c);
+} else {
+  console.log(undefined);
+}
+// undefined
+
+if (obj.a && obj.a.c) {
+  console.log(obj.a.c);
+} else {
+  console.log(undefined);
+}
+// 1
+```
+
+`?.` 연산자는 값이 `null` 또는 `undefined`인지 확인하기 위해 `if`문을 쓰는 것을 줄여준다. 위 코드와 아래 코드는 동작이 동일하다.
+
+```js
+console.log(obj?.b?.c); // undefined
+console.log(obj?.a?.c); // 1
+```
+
+---
