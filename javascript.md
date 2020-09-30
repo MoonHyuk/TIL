@@ -216,6 +216,16 @@ console.log(chunk(arr3, 3));
 
 map은 항상 기존의 Array와 길이가 같은 Array를 반환하는 것과 달리, reduce는 좀 더 자유로운 반환값을 만들 수 있다.
 
+### flat
+
+인자로 넘겨준 깊이만큼 배열을 flatten한다.
+
+```js
+const a = [1, 2, [[3, 4, 5], [6, 7], 8], 9];
+
+console.log(a.flat(2)); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
 ### from
 
 ```js
