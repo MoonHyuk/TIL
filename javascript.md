@@ -3,6 +3,7 @@
 - [var vs let](#var-vs-let)
 - [유용한 String 메소드](#유용한-String-메소드)
 - [유용한 Array 메소드](#유용한-Array-메소드)
+- [유용한 Object 메소드](#유용한-Object-메소드)
 - [Arrow Functions](#Arrow-Functions)
 - [Promises, Async/Await](#Promises-AsyncAwait)
 - [Destructuring assignment](#Destructuring-assignment)
@@ -263,6 +264,70 @@ console.log(newArr); // ["cs101", "cs223", "cs411"]
 ```
 
 arr를 순회하면서 인자로 넘겨준 함수를 실행하고, 그 함수의 반환값이 true인 값들만 모아 새로운 Array를 만든다.
+
+---
+
+## 유용한 Object 메소드
+
+### Object.values, Ojbect.keys
+
+```js
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+console.log(Object.values(obj)); // [1, 2, 3]
+console.log(Object.keys(obj)); // ["a", "b", "c"]
+```
+
+### Object.entries
+
+Object를 아래와 같이 key, value 쌍의 배열로 만들어준다.
+
+```js
+console.log(Object.entries(obj)); // [["a", 1], ["b", 2], ["c", 3]]
+```
+
+특히 `for of`문과 [구조 분해 할당](#Destructuring-assignment)과 같이 사용하여 Object의 프로퍼티들을 순회할 때 사용한다.
+
+```js
+for ([key, value] of Object.entries(obj)) {
+  console.log("key:", key, "value:", value);
+}
+// key:a value:1
+// key:b value:2
+// key:c value:3
+```
+
+### Object.seal
+
+Object가 이미 가지고 있는 프로퍼티는 수정할 수 있지만 새로운 프로퍼티를 추가하거나 프로퍼티를 삭제할 수 없게 만든다.
+
+```js
+Object.seal(obj);
+
+obj.a = 999; // OK
+obj.d = 4; // 적용되지 않는다
+delete obj.b; // 적용되지 않는다
+
+console.log(obj); // { a: 999, b: 2, c: 3 }
+```
+
+### Object.freeze
+
+Object의 프로퍼티 수정, 생성, 삭제를 모두 할 수 없게 만든다.
+
+```js
+Object.freeze(obj);
+
+obj.a = 999; // 적용되지 않는다
+obj.d = 4; // 적용되지 않는다
+delete obj.b; // 적용되지 않는다
+
+console.log(obj); // { a: 1, b: 2, c: 3 }
+```
 
 ---
 
