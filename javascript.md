@@ -950,6 +950,20 @@ console.log(c ?? "bar"); // false
 console.log(c || "baz"); // baz
 ```
 
+아래와 같이 오른쪽에 식을 쓸 수도 있다.
+
+```js
+movies ?? (movies = getMovies());
+```
+
+`undefined` 또는 `null`인지를 if 문으로 검사하는 코드를 대체할 수 있어보인다.
+
+```js
+if (movies === undefined || movies === null) {
+  movies = getMovies();
+}
+```
+
 `||` 연산자와 다른 점은 `||` 연산자는 왼쪽 피연산자가 false 값으로 인식 되는 것들(`false`, `null`, `undefined`, `0`, `""` 등)인지를 확인하는 반면 `??` 연산자는 오직 `null` 또는 `undefined`인지를 확인한다.
 
 ---
