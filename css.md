@@ -1,9 +1,10 @@
 ## 주의
+
 깃헙 사이트 내에서는 `style` 태그가 적용되지 않으므로 [여기](https://moonhyuk.github.io/TIL/css.html)에서 봐주시길 바랍니다.
 
 ## 목차
 
-- [Margin Collapsing](#Margin-Collapsing)
+- [Margin Collapsing](#margin-collapsing)
 
 ---
 
@@ -17,6 +18,7 @@ Margin Collapsing(마진 겹침)현상은 특정 상황에서 elements 간 top �
 <div style="border: 1px solid black; margin:40px">a</div>
 <div style="border: 1px solid black; margin:50px">b</div>
 ```
+
 <div style="border: 1px solid black; margin:40px">a</div>
 <div style="border: 1px solid black; margin:50px">b</div>
 
@@ -26,6 +28,7 @@ Margin Collapsing(마진 겹침)현상은 특정 상황에서 elements 간 top �
 <span style="border: 1px solid black; margin:40px">a</span>
 <span style="border: 1px solid black; margin:50px">b</span>
 ```
+
 <span style="border: 1px solid black; margin:40px">a</span>
 <span style="border: 1px solid black; margin:50px">b</span>
 
@@ -63,5 +66,6 @@ Margin Collapsing(마진 겹침)현상은 특정 상황에서 elements 간 top �
 <div style="margin-top: 40px; margin-bottom: 60px;"></div>
 <div style="border: 1px solid black; margin: 50px;">b</div>
 ```
+
 <div style="margin-top: 40px; margin-bottom: 60px;"></div>
 <div style="border: 1px solid black; margin: 50px;">b</div>

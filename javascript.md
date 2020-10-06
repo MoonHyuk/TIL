@@ -1,19 +1,19 @@
 ## 목차
 
-- [Lexical Scope](#Lexical-Scope)
+- [Lexical Scope](#lexical-scope)
 - [var vs let](#var-vs-let)
-- [유용한 String 메소드](#유용한-String-메소드)
-- [유용한 Array 메소드](#유용한-Array-메소드)
-- [유용한 Object 메소드](#유용한-Object-메소드)
-- [Arrow Functions](#Arrow-Functions)
-- [Promises, Async/Await](#Promises-AsyncAwait)
-- [Destructuring assignment](#Destructuring-assignment)
-- [Spread](#Spread)
-- [Rest](#Rest)
-- [Deep Clone](#Deep-Clone)
-- [Set](#Set)
-- [??](#Nullish-coalescing-operator-)
-- [?.](#Optional-Chaining-)
+- [유용한 String 메소드](#유용한-string-메소드)
+- [유용한 Array 메소드](#유용한-array-메소드)
+- [유용한 Object 메소드](#유용한-object-메소드)
+- [Arrow Functions](#arrow-functions)
+- [Promises, Async/Await](#promises-asyncAwait)
+- [Destructuring assignment](#destructuring-assignment)
+- [Spread](#spread)
+- [Rest](#rest)
+- [Deep Clone](#deep-clone)
+- [Set](#set)
+- [??](#nullish-coalescing-operator-)
+- [?.](#optional-chaining-)
 
 ---
 
