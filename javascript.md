@@ -910,6 +910,35 @@ Javascript에서 배열이나 객체를 값복사(deep clone)을 하는 방법�
    console.log(b); // [1, [2], "hello", true, () => {}]
    ```
 
+4. 또 다른 방법  
+   [history API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)의 `replaceState`가 객체를 deep clone한다는 사실을 이용할 수도 있다.
+
+   ```js
+   function deepClone(obj) {
+     const oldState = history.state;
+     history.replaceState(obj, document.title);
+     const copy = history.state;
+     history.replaceState(oldState, document.title);
+     return copy;
+   }
+
+   const a = {
+     x: {
+       y: 3,
+     },
+   };
+
+   b = deepClone(a);
+   b.x.y = 10;
+
+   console.log(a.x.y); // 3
+   console.log(b.x.y); // 10
+   ```
+
+   하지만 이 방법은 서버 사이드에서는 사용할 수 없다.
+
+   출처: https://dassur.ma/things/deep-copy/
+
 ---
 
 ## Set
