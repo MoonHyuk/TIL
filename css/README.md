@@ -7,6 +7,7 @@
 ## 목차
 
 - [Margin Collapsing](#margin-collapsing)
+- [Flex Cheat Sheet](./flex.md)
 
 ---
 
@@ -71,3 +72,5 @@ Margin Collapsing(마진 겹침)현상은 특정 상황에서 elements 간 top �
 
 <div style="margin-top: 40px; margin-bottom: 60px;"></div>
 <div style="border: 1px solid black; margin: 50px;">b</div>
+
+---
