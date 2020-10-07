@@ -2,7 +2,7 @@
 
 ## 주의
 
-깃헙 사이트 내에서는 `style` 태그가 적용되지 않으므로 [여기](https://moonhyuk.github.io/TIL/css.html)에서 봐주시길 바랍니다.
+깃헙 사이트 내에서는 `style` 태그가 적용되지 않으므로 [여기](https://moonhyuk.github.io/TIL/css/)에서 봐주시길 바랍니다.
 
 ## 목차
 
