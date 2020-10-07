@@ -75,10 +75,14 @@ https://studiomeal.com/archives/197
 
 1. nowrap (default)
 
-   <style></style>
-   <div class="flex-container">
+   <style>
+     .flex-nowrap {
+       width: 100px;
+     }
+   </style>
+   <div class="flex-container flex-nowrap">
      <div class="flex-item">
-       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, sunt.
      </div>
      <div class="flex-item">bbbbbbbbbb</div>
      <div class="flex-item">cc</div>
