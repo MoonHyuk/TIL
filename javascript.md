@@ -1,3 +1,5 @@
+# JavaScript
+
 ## 목차
 
 - [Lexical Scope](#lexical-scope)
