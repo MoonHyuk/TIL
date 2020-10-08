@@ -48,6 +48,8 @@ body {
 .today__img {
   border-radius: 10px;
   width: 150px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .today__description {
