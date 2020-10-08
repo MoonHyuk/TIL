@@ -8,6 +8,7 @@
 
 - [Margin Collapsing](#margin-collapsing)
 - [Flex Cheat Sheet](./flex.md)
+- [CSS 연습1](./exercise/1/)
 
 ---
 
