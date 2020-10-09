@@ -4,6 +4,8 @@
 
 https://studiomeal.com/archives/197
 
+---
+
 ## Container 속성들
 
 ### display
@@ -310,5 +312,87 @@ https://studiomeal.com/archives/197
      <div class="flex-item">bbbbbbbbbb</div>
      <div class="flex-item">cc</div>
    </div>
+
+---
+
+## Item 속성들
+
+### flex-grow (default: 0)
+
+기본적으로 flex의 아이템들은 자신의 content 크기만큼 width를 가지고 더이상 늘어나지 않는다. `flex-grow` 속성에 0보다 큰 값을 주면 부모 container의 남은 공간을 다 차지하도록 늘어난다.
+
+`flex-grow` 속성의 값은 남은 공간을 차지할 비율을 나타낸다.
+아래 예시에서 첫번째, 두번째, 세번째 item들은 각각 `flex-grow`를 1, 2, 0으로 주었다. 세번째 item은 자신의 content 크기에서 더이상 늘어나지 않았고, 첫번째와 두번째 item은 남은 공간을 각각 1대 2의 비율로 나눠가져 늘어났다.
+
+   <style>
+     .flex-grow-1 {
+       flex-grow: 1;
+     }
+     .flex-grow-2 {
+       flex-grow: 2;
+     }
+   </style>
+   <div class="flex-container">
+     <div class="flex-item flex-grow-1">aaaaaaaaa</div>
+     <div class="flex-item flex-grow-2">bbbbbbbbbb</div>
+     <div class="flex-item">cc</div>
+   </div>
+
+### flex-shrink (default: 1)
+
+`flex-shrink`는 container의 크기가 작아졌을 때 item의 크기도 작아질지 여부를 정한다.  
+또 `flex-shrink`의 값이 클수록 다른 item보다 더 많이 줄어든다.
+
+아래 예시에서 첫번째 item과 두번째 item에 `flex-shrink`를 각각 0과 1로 설정했다. 창의 크기를 줄여보면서 차이를 보자.
+
+  <style>
+    .flex-shrink-0 {
+      flex-shrink: 0;
+    }
+    .flex-shrink-1 {
+      flex-shrink: 1;
+    }
+  </style>
+  <div class="flex-container">
+    <div class="flex-item flex-shrink-0">Lorem ipsum dolor sit.</div>
+    <div class="flex-item flex-shrink-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.
+    </div>
+  </div>
+
+### flex-basis (default: auto)
+
+`flex-basis`는 `flex-grow`가 0일 때 item의 기본 width를 지정해준다.
+
+아래 예시에서 첫번째 item과 두번째 item에 `flex-basis`를 각각 200px, auto로 주었다.
+
+  <style>
+    .flex-basis {
+      flex-basis: 200px;
+    }
+  </style>
+  <div class="flex-container">
+    <div class="flex-item flex-basis">aaa</div>
+    <div class="flex-item">bbbb</div>
+  </div>
+
+### flex
+
+`flex`는 `flex-grow`, `flex-shrink`, `flex-basis` 속성들을 단축하여 사용할 수 있게 해준다.
+
+```
+flex: 2 1 200px;
+```
+
+이 코드는 아래 코드와 같다.
+
+```
+flex-grow: 2;
+flex-shrink: 1;
+flex-basis: 200px;
+```
 
 ---
