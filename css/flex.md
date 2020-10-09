@@ -18,6 +18,7 @@ https://studiomeal.com/archives/197
        background: black;
      }
      .flex-item {
+       color: white;
        background: green;
        border: 3px solid black;
      }
