@@ -1,0 +1,86 @@
+body {
+  background-color: rgb(218, 225, 226);
+}
+
+.header {
+  display: flex;
+  background-color: slateblue;
+}
+
+.header__item {
+  width: 25%;
+  transition: 0.5s;
+}
+
+.header__item:hover {
+  width: 30%;
+  background-color: darkslateblue;
+}
+
+.header__link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1em;
+  text-align: center;
+}
+
+.search__form {
+  display: flex;
+  height: 40px;
+}
+
+.search__text {
+  flex-grow: 1;
+  margin-right: 10px;
+  font-size: 1rem;
+  border: none;
+}
+
+.search__submit {
+  color: white;
+  background-color: slateblue;
+  border: none;
+  border-radius: 0.3em;
+  width: 4em;
+  flex-shrink: 0;
+}
+
+.info__list__item {
+  display: flex;
+  margin: 0.5em 0;
+}
+.info__list__item:before {
+  content: "❤";
+  margin-right: 0.5em;
+}
+
+.message__list__item {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.user__photo {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border: 2px solid pink;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.user__list__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.user__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
