@@ -6,12 +6,23 @@
 
 ## 목차
 
+- [Margin Auto](#margin-auto)
 - [Margin Collapsing](#margin-collapsing)
 - [Flex Cheat Sheet](./flex.md)
 - 연습
   1. [Movie App](./exercises/1_movie_app/index.html)
 
 ---
+
+## Margin Auto
+
+### margin: auto
+
+<div style="width: 200px; border: 1px solid black; margin:auto">aa</div>
+
+### margin-left: auto
+
+<div style="width: 200px; border: 1px solid black; margin-left:auto">aa</div>
 
 ## Margin Collapsing
 
