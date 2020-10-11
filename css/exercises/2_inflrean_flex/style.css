@@ -84,3 +84,45 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.card__item {
+  margin-bottom: 2rem;
+}
+.card__item__img {
+  height: 0;
+  padding-bottom: 60%;
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card__item__text {
+  padding: 1em;
+  background-color: white;
+}
+
+@media (min-width: 600px) {
+  .card__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -1em;
+  }
+
+  .card__item {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0 1em;
+  }
+
+  .card__item__text {
+    flex-grow: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card__item {
+    width: 33.333%;
+  }
+}
