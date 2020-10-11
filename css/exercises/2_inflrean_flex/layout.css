@@ -99,3 +99,39 @@ label[for="modal__opener"]::before {
 .search__form {
   margin-right: 3rem;
 }
+
+@media (min-width: 1000px) {
+  .page {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .header,
+  .menu,
+  .footer {
+    width: 100%;
+  }
+
+  .aside {
+    max-width: 300px;
+    width: 20%;
+  }
+
+  .aside__a {
+    order: 1;
+  }
+
+  .primary {
+    order: 2;
+    flex-grow: 1;
+    width: 60%;
+  }
+
+  .aside__b {
+    order: 3;
+  }
+
+  .footer {
+    border-top: 1px solid lightgrey;
+    order: 4;
+  }
+}

@@ -2,6 +2,10 @@ body {
   background-color: rgb(218, 225, 226);
 }
 
+.header {
+  background-color: #dddddd;
+}
+
 .header__logo {
   flex-shrink: 0;
 }
@@ -124,4 +128,8 @@ body {
   padding: 2rem;
   background-color: white;
   border-radius: 0.5rem;
+}
+
+.footer {
+  background-color: #dddddd;
 }
