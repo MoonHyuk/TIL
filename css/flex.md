@@ -12,7 +12,7 @@
 
 ### display
 
-1. flex
+**1. display: flex;**
 
    <style>
      .flex-container {
@@ -32,7 +32,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-2. inline-flex
+**2. display: inline-flex;**
 
    <style>
      .inline-flex {
@@ -48,7 +48,7 @@
 
 ### flex-direction
 
-1. row (default)
+**1. flex-driection: row; (default)**
 
    <style>
      .flex-row {
@@ -62,7 +62,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-2. column
+**2. flex-direction: column;**;
 
    <style>
      .flex-column {
@@ -78,7 +78,7 @@
 
 ### flex-wrap
 
-1. nowrap (default)
+**1. flex-wrap: nowrap; (default)**
 
    <style>
      .flex-nowrap {
@@ -93,7 +93,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-2. wrap
+**2. flex-wrap: wrap;**
 
    <style>
      .flex-wrap {
@@ -109,7 +109,7 @@
 
 ### justify-content - 메인축 방향으로 정렬
 
-1. flex-start (default)
+**1. justify-content: flex-start; (default)**
 
    <style>
      .justify-flex-start {
@@ -122,7 +122,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-2. flex-end
+**2. justify-content: flex-end;**
 
    <style>
      .justify-flex-end {
@@ -135,7 +135,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-3. center
+**3. justify-content: center;**
 
    <style>
      .justify-flex-center {
@@ -148,7 +148,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-4. space-between
+**4. justify-content: space-between;**
 
    <style>
      .justify-space-between {
@@ -161,7 +161,8 @@
      <div class="flex-item">cc</div>
    </div>
 
-5. space-around
+**5. justify-content: space-around;**
+
    <style>
      .justify-space-around {
        justify-content: space-around;
@@ -175,7 +176,7 @@
 
 ### align-item - 메인축에 수직 방향으로 정렬
 
-1. stretch (default)
+**1. align-item: stretch; (default)**
 
    <style>
      .align-stretch {
@@ -189,7 +190,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-2. flex-start
+**2. align-item: flex-start;**
 
    <style>
      .align-flex-start {
@@ -203,7 +204,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-3. flex-end
+**3. align-item: flex-end;**
 
    <style>
      .align-flex-end {
@@ -217,7 +218,8 @@
      <div class="flex-item">cc</div>
    </div>
 
-4. center
+**4. align-item: center;**
+
    <style>
      .align-center {
        align-items: center;
@@ -232,7 +234,7 @@
 
 ### align-content - wrap을 사용한 경우 수직 정렬
 
-1. stretch (default)
+**1. align-content: stretch; (default)**
 
    <style>
      .align-content-stretch {
@@ -246,7 +248,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-2. flex-start
+**2. align-content: flex-start;**
 
    <style>
      .align-content-flex-start {
@@ -260,7 +262,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-3. flex-end
+**3. align-content: flex-end;**
 
    <style>
      .align-content-flex-end {
@@ -274,7 +276,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-4. center
+**4. align-content: center;**
 
    <style>
      .align-content-center {
@@ -288,7 +290,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-5. space-between
+**5. align-content: space-between;**
 
    <style>
      .align-content-space-between {
@@ -302,7 +304,7 @@
      <div class="flex-item">cc</div>
    </div>
 
-6. space-around
+**6. align-content: space-around;**
 
    <style>
      .align-content-space-around {
