@@ -9,6 +9,7 @@
 - [Margin Auto](#margin-auto)
 - [Margin Collapsing](#margin-collapsing)
 - [Flex Cheat Sheet](./flex.md)
+- [Grid Cheat Sheet](./grid.md)
 - 연습
   1. [Movie App](./exercises/1_movie_app/index.html)
   2. [인프런 flex 강의 연습](./exercises/2_inflrean_flex/index.html)
