@@ -19,6 +19,7 @@
        padding: 10px;
        background-color: grey;
        display: grid;
+       margin-bottom: 2rem;
    }
    .grid__item {
        padding: 10px;

@@ -18,6 +18,7 @@
      .flex-container {
        display: flex;
        background: black;
+       margin-bottom: 2rem;
      }
      .flex-item {
        color: white;
