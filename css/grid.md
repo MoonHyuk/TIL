@@ -185,3 +185,123 @@
     <div class="grid__item">B</div>
     <div class="grid__item">C</div>
   </div>
+
+### grid 관련 함수들
+
+#### repeat
+
+`repeat(n, x)`는 x값을 n번 반복해서 쓴 것과 같다.
+
+**ex1. grid-template-columns: repeat(5, 100px);**
+
+  <style>
+    .repeat1 {
+      grid-template-columns: repeat(5, 100px);
+    }
+  </style>
+
+  <div class="grid__container repeat1">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex2. grid-template-columns: repeat(5, 1fr 2fr);**
+
+  <style>
+    .repeat2 {
+      grid-template-columns: repeat(5, 1fr 2fr);
+    }
+  </style>
+
+  <div class="grid__container repeat2">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+    <div class="grid__item">G</div>
+    <div class="grid__item">H</div>
+    <div class="grid__item">I</div>
+    <div class="grid__item">J</div>
+  </div>
+
+**ex3. grid-template-columns: repeate(auto-fill, 200px);**
+
+`auto-fill`과 함께 사용하면 한 줄이 최대한 차도록 자동으로 갯수를 맞춰준다.
+
+  <style>
+    .repeat3 {
+      grid-template-columns: repeat(auto-fill, 200px);
+    }
+  </style>
+
+  <div class="grid__container repeat3">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+#### minmax
+
+`minmax(x, y)`는 그리드 아이템들 크기의 최솟값과 최댓값을 지정해준다.
+
+**ex1. grid-template-columns: repeat(3, minmax(100px, 200px));**
+
+  <style>
+    .minmax1 {
+      grid-template-columns: repeat(3, minmax(100px, 200px));
+    }
+  </style>
+
+  <div class="grid__container minmax1">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex2. grid-template-columns: repeat(3, minmax(100px, auto));**
+
+  <style>
+    .minmax2 {
+      grid-template-columns: repeat(3, minmax(100px, auto));
+    }
+  </style>
+
+  <div class="grid__container minmax2">
+    <div class="grid__item">AAAAAAAAA</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">DDDDDDDDDDDDDDD</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex3. grid-template-columns: repeat(auto-fit, minmax(200px, auto));**
+
+`auto-fit`과 `minmax`를 같이 사용하면 한 줄이 최대한 차도록 갯수를 맞춰주고, 남은 공간까지 크기를 자동으로 늘려준다. (repeat ex3과 비교)
+
+  <style>
+    .minmax3 {
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    }
+  </style>
+
+  <div class="grid__container minmax3">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
