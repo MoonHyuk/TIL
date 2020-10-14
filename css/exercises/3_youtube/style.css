@@ -1,5 +1,5 @@
 body {
-  background-color: lightgray;
+  background-color: #f9f9f9;
 }
 
 .aside {
@@ -28,7 +28,7 @@ body {
 }
 
 .aside:hover::-webkit-scrollbar-thumb {
-  background-color: rgb(180, 180, 180);
+  background-color: #cfcfcf;
 }
 
 .aside__list {
@@ -44,8 +44,20 @@ body {
   cursor: pointer;
 }
 
+.aside__item--active {
+  background-color: #e5e5e5;
+}
+
+.aside__item--active:hover {
+  background-color: #bfbfbf !important;
+}
+
+.aside__item--active .aside__item__icon:before {
+  color: #ff0000;
+}
+
 .aside__item:hover {
-  background-color: lightgray;
+  background-color: #f2f2f2;
 }
 
 .aside__item.no-hover {
@@ -62,7 +74,7 @@ body {
 
 .aside__item__icon:before {
   font-size: 18px;
-  color: gray;
+  color: #606060;
   display: flex;
   justify-content: center;
   width: 24px;
