@@ -306,3 +306,240 @@
     <div class="grid__item">E</div>
     <div class="grid__item">F</div>
   </div>
+
+### row-gap
+
+**ex. row-gap: 10px;**
+
+  <style>
+    .row-gap1 {
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      row-gap: 10px;
+    }
+  </style>
+
+  <div class="grid__container row-gap1">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### column-gap: 10px;
+
+**ex. column-gap: 10px;**
+
+  <style>
+    .column-gap {
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      column-gap: 10px;
+    }
+  </style>
+
+  <div class="grid__container column-gap">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### gap
+
+**ex. gap: 10px 20px**
+
+  <style>
+    .gap {
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      gap: 10px 20px;
+    }
+  </style>
+
+  <div class="grid__container gap">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### grid-auto-rows
+
+rows의 수가 몇 개일지 모를 때 사용한다.
+
+**ex. grid-auto-rows: 100px**
+
+  <style>
+    .grid-auto-rows {
+      grid-auto-rows: 100px;
+    }
+  </style>
+
+  <div class="grid__container grid-auto-rows">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### grid-column-start, grid-column-end
+
+**grid-column-start: 1; grid-column-end: 3;**
+
+  <style>
+    .grid-column-start-end {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  </style>
+
+  <div class="grid__container minmax1">
+    <div class="grid__item grid-column-start-end">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### grid-column
+
+grid-column-start, grid-column-end의 짧은 버전
+
+**grid-column: 1 / 3;**
+
+  <style>
+    .grid-column {
+      grid-column: 1 / 3;
+    }
+  </style>
+
+  <div class="grid__container minmax1">
+    <div class="grid__item grid-column">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### grid-row-start, grid-row-end
+
+**grid-row-start: 1; grid-row-end: 3;**
+
+  <style>
+    .grid-row-start-end {
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+  </style>
+
+  <div class="grid__container minmax1">
+    <div class="grid__item grid-row-start-end">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### grid-row
+
+grid-row-start, grid-row-end의 짧은 버전
+
+**grid-row: 1 / 3;**
+
+  <style>
+    .grid-row {
+      grid-row: 1 / 3;
+    }
+  </style>
+
+  <div class="grid__container minmax1">
+    <div class="grid__item grid-row">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### grid-template-areas
+
+```html
+<style>
+  .grid-template-areas {
+    grid-template-areas:
+      "header header header"
+      "a main b"
+      "footer footer footer";
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 60px 200px 60px;
+  }
+
+  .header {
+    grid-area: header;
+  }
+  .a {
+    grid-area: a;
+  }
+  .main {
+    grid-area: main;
+  }
+  .b {
+    grid-area: b;
+  }
+  .footer {
+    grid-area: footer;
+  }
+</style>
+
+<div class="grid__container grid-template-areas">
+  <div class="grid__item header">header</div>
+  <div class="grid__item a">a</div>
+  <div class="grid__item main">main</div>
+  <div class="grid__item b">b</div>
+  <div class="grid__item footer">footer</div>
+</div>
+```
+
+  <style>
+    .grid-template-areas {
+      grid-template-areas: 
+        "header header header"
+        "a main b"
+        "footer footer footer";
+      grid-template-columns: 100px auto 100px;
+      grid-template-rows: 60px 200px 60px;
+    }
+
+    .header {
+      grid-area: header;
+    }
+    .a {
+      grid-area: a;
+    }
+    .main {
+      grid-area: main;
+    }
+    .b {
+      grid-area: b;
+    }
+    .footer {
+      grid-area: footer;
+    }
+  </style>
+
+  <div class="grid__container grid-template-areas">
+    <div class="grid__item header">header</div>
+    <div class="grid__item a">a</div>
+    <div class="grid__item main">main</div>
+    <div class="grid__item b">b</div>
+    <div class="grid__item footer">footer</div>
+  </div>
