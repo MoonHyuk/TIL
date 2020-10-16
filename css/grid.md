@@ -543,3 +543,391 @@ grid-row-start, grid-row-end의 짧은 버전
     <div class="grid__item b">b</div>
     <div class="grid__item footer">footer</div>
   </div>
+
+### align-items
+
+**ex1. align-items: stretch**
+
+  <style>
+    .align-items1 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-items: stretch;
+    }
+  </style>
+
+  <div class="grid__container align-items1">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex2. align-items: center**
+
+  <style>
+    .align-items2 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-items: center;
+    }
+  </style>
+
+  <div class="grid__container align-items2">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex3. align-items: start**
+
+  <style>
+    .align-items3 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-items: start;
+    }
+  </style>
+
+  <div class="grid__container align-items3">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex4. align-items: end**
+
+  <style>
+    .align-items4 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-items: end;
+    }
+  </style>
+
+  <div class="grid__container align-items4">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### align-content
+
+**ex1. align-content: stretch**
+
+  <style>
+    .align-content {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-content: stretch;
+    }
+  </style>
+
+  <div class="grid__container align-content">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex2. align-content: center**
+
+  <style>
+    .align-content2 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-content: center;
+    }
+  </style>
+
+  <div class="grid__container align-content2">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex3. align-content: start**
+
+  <style>
+    .align-content3 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-content: start;
+    }
+  </style>
+
+  <div class="grid__container align-content3">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex4. align-content: end**
+
+  <style>
+    .align-content4 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-content: end;
+    }
+  </style>
+
+  <div class="grid__container align-content4">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex5. align-content: space-between**
+
+  <style>
+    .align-content5 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-content: space-between;
+    }
+  </style>
+
+  <div class="grid__container align-content5">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex6. align-content: space-around**
+
+  <style>
+    .align-content6 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      align-content: space-around;
+    }
+  </style>
+
+  <div class="grid__container align-content6">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### justify-items
+
+**ex1. justify-items: stretch**
+
+  <style>
+    .justify-items1 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-items: stretch;
+    }
+  </style>
+
+  <div class="grid__container justify-items1">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex2. justify-items: center**
+
+  <style>
+    .justify-items2 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-items: center;
+    }
+  </style>
+
+  <div class="grid__container justify-items2">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex3. justify-items: start**
+
+  <style>
+    .justify-items3 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-items: start;
+    }
+  </style>
+
+  <div class="grid__container justify-items3">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex4. justify-items: end**
+
+  <style>
+    .justify-items4 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-items: end;
+    }
+  </style>
+
+  <div class="grid__container justify-items4">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+### justify-content
+
+**ex1. justify-content: stretch**
+
+  <style>
+    .justify-content {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-content: stretch;
+    }
+  </style>
+
+  <div class="grid__container justify-content">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex2. justify-content: center**
+
+  <style>
+    .justify-content2 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-content: center;
+    }
+  </style>
+
+  <div class="grid__container justify-content2">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex3. justify-content: start**
+
+  <style>
+    .justify-content3 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-content: start;
+    }
+  </style>
+
+  <div class="grid__container justify-content3">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex4. justify-content: end**
+
+  <style>
+    .justify-content4 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-content: end;
+    }
+  </style>
+
+  <div class="grid__container justify-content4">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex5. justify-content: space-between**
+
+  <style>
+    .justify-content5 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-content: space-between;
+    }
+  </style>
+
+  <div class="grid__container justify-content5">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
+
+**ex6. justify-content: space-around**
+
+  <style>
+    .justify-content6 {
+      height: 300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+      justify-content: space-around;
+    }
+  </style>
+
+  <div class="grid__container justify-content6">
+    <div class="grid__item">A</div>
+    <div class="grid__item">B</div>
+    <div class="grid__item">C</div>
+    <div class="grid__item">D</div>
+    <div class="grid__item">E</div>
+    <div class="grid__item">F</div>
+  </div>
