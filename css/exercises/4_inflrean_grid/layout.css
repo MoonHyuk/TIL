@@ -1,0 +1,132 @@
+.header {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.header__logo {
+  flex-shrink: 0;
+}
+
+.primary {
+  padding: 1rem;
+}
+
+.search__form {
+  width: 300px;
+}
+
+.aside {
+  padding: 2rem 1rem;
+  background-color: white;
+}
+
+.aside__b {
+  background-color: #666;
+  color: white;
+}
+
+.info__list {
+  margin-bottom: 2rem;
+}
+
+.footer {
+  padding: 1rem;
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+.card__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  column-gap: 2%;
+}
+
+.card__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__item__text {
+  flex-grow: 1;
+}
+
+.modal__container {
+  display: none;
+}
+
+label[for="modal__opener"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  font-size: 2rem;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+label[for="modal__opener"]::before {
+  content: "🖤";
+}
+
+#modal__opener {
+  display: none;
+}
+
+#modal__opener:checked ~ .modal__container {
+  display: flex;
+}
+
+#modal__opener:checked ~ label[for="modal__opener"]::before {
+  content: "💗";
+}
+
+.search__form {
+  margin-right: 3rem;
+}
+
+@media (min-width: 1000px) {
+  .page {
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-areas:
+      "header header header"
+      "menu menu menu"
+      "aside__a primary aside__b"
+      "footer footer footer";
+  }
+
+  .header {
+    grid-area: header;
+  }
+  .menu {
+    grid-area: menu;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+
+  .aside__a {
+    grid-area: aside__a;
+  }
+
+  .aside__b {
+    grid-area: aside__b;
+  }
+
+  .primary {
+    grid-area: primary;
+  }
+}
+
+@media (min-width: 1400px) {
+  .page {
+    grid-template-columns: 300px auto 300px;
+  }
+}
