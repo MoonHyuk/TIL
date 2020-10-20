@@ -12,7 +12,6 @@ body {
   width: 420px;
   height: 420px;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
   background-color: #f0f0f0;
   padding: 2em;
 }
