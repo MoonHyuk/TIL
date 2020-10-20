@@ -1,0 +1,18 @@
+@import "../base.css";
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 420px;
+  height: 420px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  background-color: #f0f0f0;
+  padding: 2em;
+}
