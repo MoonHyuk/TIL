@@ -1,0 +1,9 @@
+.header {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+}
+
+.aside {
+  padding-top: 56px;
+}
