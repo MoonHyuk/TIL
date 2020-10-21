@@ -4,6 +4,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -14,4 +15,9 @@ body {
   display: grid;
   background-color: #f0f0f0;
   padding: 2em;
+  margin: 0.5rem;
+}
+
+.input {
+  margin: 0.5rem;
 }
