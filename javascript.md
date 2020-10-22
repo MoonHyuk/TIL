@@ -8,7 +8,7 @@
 - [유용한 Array 메소드](#유용한-array-메소드)
 - [유용한 Object 메소드](#유용한-object-메소드)
 - [Arrow Functions](#arrow-functions)
-- [Promises, Async/Await](#promises-asyncAwait)
+- [Promises, Async/Await](#promises-asyncawait)
 - [Destructuring assignment](#destructuring-assignment)
 - [Spread](#spread)
 - [Rest](#rest)
