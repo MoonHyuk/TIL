@@ -1,5 +1,5 @@
 .header {
-  width: 100vw;
+  width: 100%;
   position: fixed;
   top: 0;
 }
@@ -7,4 +7,8 @@
 .aside {
   margin-top: 56px;
   height: calc(100vh - 56px);
+}
+
+.section {
+  height: 100vh;
 }

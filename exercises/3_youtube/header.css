@@ -21,9 +21,12 @@
 }
 
 .header__item:nth-child(3) {
+  display: flex;
+  justify-content: space-evenly;
   flex-shrink: 0;
   width: 225px;
   height: 40px;
+  padding-left: 10px;
 }
 
 .header__item__hamburger {
@@ -44,7 +47,7 @@
 .header__item__logo {
   display: flex;
   align-items: center;
-  width: 126px;
+  width: 129px;
   height: 24px;
 }
 
@@ -108,4 +111,29 @@
 .search__button__icon {
   font-size: 14px;
   color: #aeaeae;
+}
+
+.header__icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #606060;
+}
+
+.header__profile {
+  margin-left: 8px;
+  width: 32px;
+  height: 32px;
+  background-color: #467632;
+  border-radius: 50%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.header__profile span {
+  line-height: 32px;
+  color: #e5ebe2;
 }
