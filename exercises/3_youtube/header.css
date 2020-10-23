@@ -15,9 +15,11 @@
 }
 
 .header__item:nth-child(2) {
+  min-width: 0;
   margin: 0 40px;
   width: 640px;
   height: 30px;
+  display: flex;
 }
 
 .header__item:nth-child(3) {
@@ -89,6 +91,7 @@
   height: 30px;
   border: 1px solid #cccccc;
   z-index: 2;
+  min-width: 0;
 }
 
 .header__search__input:focus {
@@ -101,6 +104,7 @@
   border: 1px solid #cccccc;
   background-color: #f8f8f8;
   border-left: none;
+  flex-shrink: 0;
 }
 
 .header__search__button:hover {
