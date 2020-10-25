@@ -7,6 +7,7 @@
 ## 목차
 
 - [npm](#npm)
+- [webpack](#webpack)
 
 ## npm
 
@@ -68,3 +69,11 @@ npm 패키지들은 `x.y.z` 식의 버전 번호를 가지고 있다. 이 버전
    - `^0.1.2`는 `0.1.2`보다 크거나 같고 `0.2.0`보다 작은 버전을 설치한다.
 
    캐럿 범위는 호환성이 유지되는 범위에서 패키지를 설치한다고 생각하면 된다. Major 버전이 0점대 인 경우에는 Minor 업데이트에도 호환성이 깨지는 상황이 있기에, 캐럿 범위를 사용해주는 것이 좋다.
+
+## webpack
+
+### 실습
+
+위 내용을 바탕으로 webpack entry/output 실습을 해보았다.
+
+[링크](https://github.com/MoonHyuk/lecture-frontend-dev-env/commit/c7a2d057c9a7583053a5c28149c26f8860cdd7d8)
