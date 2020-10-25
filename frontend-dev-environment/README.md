@@ -72,7 +72,136 @@ npm 패키지들은 `x.y.z` 식의 버전 번호를 가지고 있다. 이 버전
 
 ## webpack
 
-### 실습
+### 고전 방식의 모듈
+
+math.js:
+
+```js
+function sum(a, b) {
+  return a + b;
+}
+```
+
+app.js:
+
+```js
+console.log(sum(1, 2));
+```
+
+index.html:
+
+```html
+<script src="./math.js">
+<script src="./app.js">
+```
+
+고전적인 방식으로 `html`파일에서 여러 `js`파일을 불러오는 경우 `math.js` 파일 안에있는 `sum`함수는 전역 스코프에 생성되어버린다. 이러면 예기치 않은 오류가 발생할 수 있기에 `즉시실행함수(IIFE)`를 사용 한다.
+
+### IIFE를 활용한 모듈
+
+math.js:
+
+```js
+var math = math || {};
+
+(function () {
+  function sum(a, b) {
+    return a + b;
+  }
+
+  math.sum = sum;
+})();
+```
+
+app.js:
+
+```js
+console.log(math.sum(1, 2));
+```
+
+`math.js`에서 `sum` 함수는 `즉시실행함수` 스코프 안에서 생성되었기 때문에 외부에서 접근할 수 없어 좀 더 안전하다.
+
+### 여러 모듈 스펙
+
+Javascript 모듈의 문법과 동작을 정의한 여러 스펙들이 등장하였다. 대표적으로는 `CommonJS`와 `AMD`이다.
+
+`CommonJS`는 주로 서버사이드(`node.js`)에서 사용하기 위해, `AMD`는 주로 브라우저 환경에서 비동기로 모듈을 로딩하기 위해 만들어졌다.
+
+그러던 중 `ECMA2015`에서 모듈 표준인 `ESM(ECMAScript Modules)`을 만들었다. `ESM`을 사용하여 `sum` 함수를 모듈화 시켜보자.
+
+math.js:
+
+```js
+export function sum(a, b) {
+  return a + b;
+}
+```
+
+app.js:
+
+```js
+import { sum } from "./math.js";
+
+console.log(sum(1, 2));
+```
+
+index.html
+
+```html
+<script type="module" src="./app.js">
+```
+
+하지만 아직까지는 `IE`를 포함한 몇몇 브라우저에서는 `ESM`이 지원되지 않는다. 모든 브라우저 환경에서 모듈을 사용하려면 `webpack`이 필요하다.
+
+### webpack 기본 세팅
+
+`webpack`은 파일들의 의존 관계를 분석하여 여러 파일들을 하나(또는 그 이상)의 파일로 만들어주는 `번들러`이다. `webpack`에서는 `CommonJS`, `AMD`, `ESM` 방식의 스펙을 모두 지원한다.
+
+`webpack`을 사용하기 위해 우선 설치를 해보자.
+
+```
+npm init -y
+npm install -D webpack webpack-cli
+```
+
+`package.json` 파일에 `build` 스크립트를 추가해준다.
+
+```json
+  ...
+  "scripts": {
+    "build": "webpack"
+  },
+  ...
+```
+
+또 `webpack.config.js` 라는 이름으로 파일을 새로 만들어 아래처럼 작성해준다.
+
+```js
+const path = require("path");
+
+module.exports = {
+  mode: "development",
+  entry: {
+    main: "./src/app.js",
+  },
+  output: {
+    path: path.resolve("./dist"),
+    filename: "[name].js",
+  },
+};
+```
+
+여기서 `entry`에는 모듈들의 의존 그래프에서 시작 파일을 명시해주고 `output`에는 번들 된 결과물이 저장될 결로와 이름을 지정해준다.
+
+그 다음 `npm run build` 명령어를 실행하면 `app.js`와 `math.js`가 하나의 파일로 번들되어 `dist/main.js`에 저장된다.
+
+`html` 파일에서는 번들된 결과 파일만 불러오면 된다.
+
+```html
+<script src="./dist/main.js">
+```
+
+### webpack 기본 세팅 실습
 
 위 내용을 바탕으로 webpack entry/output 실습을 해보았다.
 
