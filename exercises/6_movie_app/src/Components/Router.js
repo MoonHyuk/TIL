@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  BrowserRouter as BRouter,
   Route,
   Redirect,
   Switch,
@@ -7,14 +7,20 @@ import {
 import Home from "../Routes/Home";
 import Search from "../Routes/Search";
 import TV from "../Routes/TV";
+import Header from "./Header";
 
-export default () => (
-  <Router>
-    <Switch>
-      <Route path="/" exact component={Home}></Route>
-      <Route path="/tv" component={TV}></Route>
-      <Route path="/search" component={Search}></Route>
-      <Redirect from="*" to="/"></Redirect>
-    </Switch>
-  </Router>
+const Router = () => (
+  <BRouter>
+    <>
+      <Header></Header>
+      <Switch>
+        <Route path="/" exact component={Home}></Route>
+        <Route path="/tv" component={TV}></Route>
+        <Route path="/search" component={Search}></Route>
+        <Redirect from="*" to="/"></Redirect>
+      </Switch>
+    </>
+  </BRouter>
 );
+
+export default Router;
