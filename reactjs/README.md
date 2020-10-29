@@ -3,6 +3,7 @@
 ## 목차
 
 - [setState에서 this.state를 사용하지 말자](#setState에서-thisstate를-사용하지-말자)
+- [Fragments](#fragments)
 
 ---
 
@@ -52,5 +53,60 @@ addTwo = () => {
 ```
 
 `setState()`시 렌더링만 안하고 `this.state`는 업데이가 되어도 되는게 아닌가? 하는 궁금증이 생긴다면 [이 글](https://github.com/facebook/react/issues/11527#issuecomment-360199710)을 읽어보자.
+
+---
+
+## Fragments
+
+컴포넌트를 만들다 보면 여러개의 태그를 최상위에 놓고 싶을 때가 있다.  
+하지만 컴포넌트는 항상 오직 하나만의 최상위 태그를 가져야 한다.
+예를 들어 아래와 같은 코드는 컴파일 오류가 난다.
+
+```javascript
+import React from "react";
+
+function SomeComponent() {
+  return (
+    <div>...</div>
+    <div>...</div>
+  )
+}
+```
+
+```
+Parsing error: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?
+```
+
+그럴 때 위처럼 바깥에 `div`태그를 감싸도 되겠지만 불필요한 깊이가 하나 더 생겨버린다.  
+또한 안에 있는 태그들이 `tr`이고 이 컴포넌트를 `tbody` 안에 넣을 생각이었다면 분명 원하는 대로 동작하지 않을 것이다.
+
+```javascript
+function SomeComponent() {
+  return (
+    <div>
+      <tr>...</tr>
+      <tr>...</tr>
+    </div>
+  );
+}
+```
+
+이럴 때 필요한 것이 `<React.Fragment>`이다.
+
+```javascript
+function SomeComponent() {
+  return (
+    <React.Fragment>
+      <tr>...</tr>
+      <tr>...</tr>
+    </React.Fragment>
+  );
+}
+```
+
+`<React.Fragment>`를 사용하면 렌더링 후에 불필요한 태그가 생기지 않는다.
+
+`<React.Fragment></React.Fragment>`는 `<></>`로 줄여서 사용할 수도 있다.  
+하지만 `<></>`를 쓰게되면 `key` 어트리뷰트를 사용할 수 없으니 주의하자.
 
 ---
