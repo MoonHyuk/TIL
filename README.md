@@ -8,6 +8,7 @@ https://moonhyuk.github.io/TIL/
 - [javascript](javascript/README.md)
 - [프론트엔드 개발환경의 이해와 실습](frontend-dev-environment/README.md)
 - [React.js](reactjs/README.md)
+- [뻘짓들](meaningless/README.md)
 - 연습
   1. [Movie App](./exercises/1_movie_app/)
   2. [인프런 flex 강의 연습](./exercises/2_inflrean_flex/)
