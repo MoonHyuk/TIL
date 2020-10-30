@@ -546,6 +546,39 @@ grid-row-start, grid-row-end의 짧은 버전
     <div class="grid__item footer">footer</div>
   </div>
 
+### grid-template
+
+`grid-template-areas`, `grid-template-rows`, `grid-template-colmn`를 축약하여 한번에 쓸 수 있게 해준다.
+
+위 `grid-template-areas` 예시와 아래 코드는 같은 결과를 만든다.
+
+```html
+<style>
+  .grid-template {
+    grid-template:
+      "header header header" 60px
+      "a main b" 200px
+      "footer footer footer" 60px / 100px auto 100px;
+  }
+```
+
+  <style>
+    .grid-template {
+      grid-template: 
+        "header header header" 60px
+        "a main b" 200px 
+        "footer footer footer" 60px / 100px auto 100px;
+    }
+  </style>
+
+  <div class="grid__container grid-template">
+    <div class="grid__item header">header</div>
+    <div class="grid__item a">a</div>
+    <div class="grid__item main">main</div>
+    <div class="grid__item b">b</div>
+    <div class="grid__item footer">footer</div>
+  </div>
+
 ### align-items
 
 **ex1. align-items: stretch**
