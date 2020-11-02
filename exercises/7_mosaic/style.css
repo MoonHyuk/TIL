@@ -1,0 +1,19 @@
+#image {
+  display: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#container {
+  display: grid;
+}
+
+#container div {
+  border-radius: 50%;
+}
