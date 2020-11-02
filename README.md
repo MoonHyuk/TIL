@@ -15,3 +15,4 @@ https://moonhyuk.github.io/TIL/
   3. [유튜브 클론 코딩](./exercises/3_youtube/)
   4. [인프런 grid 강의 연습](./exercises/4_inflrean_grid/)
   5. [깃헙 프로필 생성기](./exercises/5_profile_generator/)
+  6. [모자이크](./exercises/7_mosaic/)
