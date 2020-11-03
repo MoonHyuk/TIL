@@ -6,25 +6,33 @@ const img = document.getElementById("image");
 const canvas = document.createElement("canvas");
 
 const mosaic = (size) => {
+  const radius = size / 2;
+  const mosaic = document.getElementById("mosaic");
+  mosaic.width = canvas.width;
+  mosaic.height = canvas.height;
+
   const cols = parseInt(canvas.width / size);
   const rows = parseInt(canvas.height / size);
 
-  const container = document.getElementById("container");
-  container.innerHTML = "";
-  container.style.gridTemplateColumns = `repeat(${cols}, ${size}px)`;
-  container.style.gridTemplateRows = `repeat(${rows}, ${size}px)`;
+  const canvasCtx = canvas.getContext("2d");
+  const mosaicCtx = mosaic.getContext("2d");
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      const pixel = canvas
-        .getContext("2d")
-        .getImageData(x * size, y * size, 1, 1).data;
+      const pixel = canvasCtx.getImageData(x * size, y * size, 1, 1).data;
 
-      const tile = document.createElement("div");
-      tile.style.width = `${size}px`;
-      tile.style.height = `${size}px`;
-      tile.style.backgroundColor = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, ${pixel[3]})`;
-      container.appendChild(tile);
+      mosaicCtx.fillStyle = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]}`;
+      mosaicCtx.beginPath();
+      mosaicCtx.ellipse(
+        x * size + radius,
+        y * size + radius,
+        radius,
+        radius,
+        0,
+        0,
+        2 * Math.PI
+      );
+      mosaicCtx.fill();
     }
   }
 };

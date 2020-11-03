@@ -9,11 +9,3 @@ body {
   width: 100vw;
   height: 100vh;
 }
-
-#container {
-  display: grid;
-}
-
-#container div {
-  border-radius: 50%;
-}
