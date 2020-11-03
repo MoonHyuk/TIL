@@ -1,3 +1,3 @@
-import DetailContainer from "./DetaileContainer";
+import DetailContainer from "./DetailContainer";
 
 export default DetailContainer;
