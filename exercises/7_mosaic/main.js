@@ -50,7 +50,14 @@ window.addEventListener("keyup", (e) => {
     tileSize++;
   } else if (e.key === "ArrowDown" && tileSize > minTileSize) {
     tileSize--;
+  } else {
+    return;
   }
 
-  mosaic(tileSize);
+  const loader = document.getElementsByClassName("loading")[0];
+  loader.style.display = "block";
+  setTimeout(() => {
+    mosaic(tileSize);
+    loader.style.display = "none";
+  });
 });
