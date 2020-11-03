@@ -1,5 +1,5 @@
 let tileSize = 20;
-const minTileSize = 4;
+const minTileSize = 1;
 const maxTileSize = 30;
 
 const img = document.getElementById("image");
