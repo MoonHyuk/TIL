@@ -11,7 +11,8 @@
 - [유용한 Object 메소드](#유용한-object-메소드)
 - [Arrow Functions](#arrow-functions)
 - [Promises, Async/Await](#promises-asyncawait)
-- [Destructuring assignment](#destructuring-assignment)
+- [구조 분해 할당](#구조-분해-할당)
+- [구조 분해 할당 특이케이스](#구조-분해-할당-특이케이스)
 - [Spread](#spread)
 - [Rest](#rest)
 - [Deep Clone](#deep-clone)
@@ -551,7 +552,7 @@ fetch 함수의 결과를 받고 싶다면 `.then()`, `.catch()`, `.finally()`�
 
 ---
 
-## Destructuring assignment
+## 구조 분해 할당
 
 한국어로는 `구조 분해 할당`이라고 한다.
 
@@ -677,6 +678,53 @@ function drawES2015Chart({
   console.log(size, cords, radius);
   // 차트 그리기 수행
 }
+```
+
+---
+
+## 구조 분해 할당 특이케이스
+
+### 객체가 null인 경우 기본값이 설정되지 않는 문제
+
+```javascript
+const order = {
+  product: {
+    name: "xxx",
+    price: 3000,
+    qty: 1,
+  },
+  // ...
+};
+
+const { product: { name, price, qty } = {} } = order;
+```
+
+위 코드는 간단한 객체 구조 분해 할당의 예시이다.
+
+하지면 어떤 경우엔 위 코드에 문제가 있을 수도 있다.
+
+```javascript
+const order = {
+  product: null,
+  // ...
+};
+
+const { product: { name, price, qty } = {} } = order;
+```
+
+product의 기본값을 `{}`로 지정해주었기 때문에 `name`, `price`, `qty`가 `undefined`가 되어야 하는것 같지만 실제로 코드를 실행해보면 아래와 같은 오류가 난다.
+
+```
+error: Uncaught TypeError: Cannot destructure property 'name' of '{}' as it is null.
+```
+
+객체가 `null`인 경우에는 기본값이 설정되지 않는 문제가 있다.
+
+이럴 땐 어쩔 수 없이 여러 줄로 나누어 구조 분해 할당을 해야한다.
+
+```javascript
+const { product } = order;
+const { name, price, qty } = product || {};
 ```
 
 ---
