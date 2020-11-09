@@ -699,6 +699,54 @@ const {
 
 ---
 
+## 구조 분해 할당 특이케이스
+
+### 객체가 null인 경우 기본값이 설정되지 않는 문제
+
+```javascript
+const order = {
+  product: {
+    name: "xxx",
+    price: 3000,
+    qty: 1,
+  },
+  // ...
+};
+
+const { product: { name, price, qty } = {} } = order;
+```
+
+위 코드는 간단한 객체 구조 분해 할당의 예시이다.
+
+하지면 어떤 경우엔 위 코드에 문제가 있을 수도 있다.  
+예를들어 `order` 객체에 `product`가 없을 때 `product`의 값을 `null`로 설정했다고 해보자.
+
+```javascript
+const order = {
+  product: null,
+  // ...
+};
+
+const { product: { name, price, qty } = {} } = order;
+```
+
+구조 분해 할당 시 `product`의 기본값을 `{}`로 지정해주었기 때문에 `name`, `price`, `qty`가 `undefined`가 되어야 하는것 같지만 실제로 코드를 실행해보면 아래와 같은 오류가 난다.
+
+```
+error: Uncaught TypeError: Cannot destructure property 'name' of '{}' as it is null.
+```
+
+이처럼 구조 분해 할당하려는 객체가 `null`인 경우에는 기본값이 설정되지 않는 문제가 있다.
+
+이럴 땐 어쩔 수 없이 여러 줄로 나누어 처리해야한다.
+
+```javascript
+const { product } = order;
+const { name, price, qty } = product || {};
+```
+
+---
+
 ## Spread
 
 Spread 연산자(`...`)는 iterable한 것들을 펼쳐준다.
