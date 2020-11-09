@@ -11,7 +11,8 @@
 - [유용한 Object 메소드](#유용한-object-메소드)
 - [Arrow Functions](#arrow-functions)
 - [Promises, Async/Await](#promises-asyncawait)
-- [Destructuring assignment](#destructuring-assignment)
+- [구조 분해 할당](#구조-분해-할당)
+- [구조 분해 할당 특이케이스](#구조-분해-할당-특이케이스)
 - [Spread](#spread)
 - [Rest](#rest)
 - [Deep Clone](#deep-clone)
@@ -551,7 +552,7 @@ fetch 함수의 결과를 받고 싶다면 `.then()`, `.catch()`, `.finally()`�
 
 ---
 
-## Destructuring assignment
+## 구조 분해 할당
 
 한국어로는 `구조 분해 할당`이라고 한다.
 
@@ -677,6 +678,23 @@ function drawES2015Chart({
   console.log(size, cords, radius);
   // 차트 그리기 수행
 }
+```
+
+## 구조 분해 할당 특이케이스
+
+```javascript
+const order = {
+  product: {
+    name: "xxx",
+    price: 3000,
+    qty: 1,
+  },
+  // ...
+};
+
+const {
+  product: { name, price, qty },
+} = order;
 ```
 
 ---

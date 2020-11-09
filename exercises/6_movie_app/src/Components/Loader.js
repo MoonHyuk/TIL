@@ -8,5 +8,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const Loader = () => <Container>Loading</Container>;
 
-export default () => <Container>Loading</Container>;
+export default Loader;
