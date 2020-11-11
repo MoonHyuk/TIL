@@ -4,10 +4,11 @@ https://moonhyuk.github.io/TIL/
 
 ## 목차
 
-- [CSS](css/README.md)
-- [javascript](javascript/README.md)
-- [프론트엔드 개발환경의 이해와 실습](frontend-dev-environment/README.md)
-- [React.js](reactjs/README.md)
+- WEB
+  - [CSS](web/css/README.md)
+  - [javascript](web/javascript/README.md)
+  - [프론트엔드 개발환경의 이해와 실습](web/frontend-dev-environment/README.md)
+  - [React.js](web/reactjs/README.md)
 - [뻘짓들](meaningless/README.md)
 - 연습
   1. [Movie App](./exercises/1_movie_app/)
