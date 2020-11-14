@@ -4,13 +4,15 @@ https://moonhyuk.github.io/TIL/
 
 ## 목차
 
-- 아키텍쳐
+- 아키텍처
   - [OOP](architecture/oop.md)
 - WEB
   - [CSS](web/css/README.md)
   - [javascript](web/javascript/README.md)
   - [프론트엔드 개발환경의 이해와 실습](web/frontend-dev-environment/README.md)
   - [React.js](web/reactjs/README.md)
+- 네트워크
+  - [gRPC](network/grpc.md)
 - [뻘짓들](meaningless/README.md)
 - 연습
   1. [Movie App](./exercises/1_movie_app/)
