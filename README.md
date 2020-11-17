@@ -6,6 +6,7 @@ https://moonhyuk.github.io/TIL/
 
 - 아키텍처
   - [OOP](architecture/oop.md)
+  - [마이크로서비스 아키텍처](architecture/microservice.md)
 - WEB
   - [CSS](web/css/README.md)
   - [javascript](web/javascript/README.md)
