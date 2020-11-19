@@ -14,6 +14,7 @@ https://moonhyuk.github.io/TIL/
   - [React.js](web/reactjs/README.md)
 - 네트워크
   - [gRPC](network/grpc.md)
+- [장인정신](craftsmanship/README.md)
 - [뻘짓들](meaningless/README.md)
 - 연습
   1. [Movie App](./exercises/1_movie_app/)
