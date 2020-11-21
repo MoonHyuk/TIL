@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # gRPC
 
 ## 목차

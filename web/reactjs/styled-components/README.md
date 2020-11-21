@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # styled-components
 
 ## 목차

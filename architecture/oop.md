@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # OOP
 
 ## 다형성

@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # Flex Cheat Sheet
 
 ## 자료 출처

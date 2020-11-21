@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # JavaScript
 
 ## 목차

@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # React.js
 
 ## 목차

@@ -1,5 +1,3 @@
-{% include breadcrumbs.html %}
-
 # CSS
 
 ## 주의
