@@ -8,6 +8,7 @@ https://moonhyuk.github.io/TIL/
   - [OOP](architecture/oop.md)
   - [마이크로서비스 아키텍처](architecture/microservice.md)
   - [퍼사드 패턴](architecture/facade.md)
+  - [팩토리 패턴](architecture/factory.md)
   - [포스텔의 법칙](architecture/postels_law.md)
 - WEB
   - [CSS](web/css/README.md)
