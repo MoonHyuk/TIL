@@ -15,6 +15,7 @@ https://moonhyuk.github.io/TIL/
   - [javascript](web/javascript/README.md)
   - [프론트엔드 개발환경의 이해와 실습](web/frontend-dev-environment/README.md)
   - [React.js](web/reactjs/README.md)
+  - [Laravel](web/laravel/README.md)
 - 네트워크
   - [gRPC](network/grpc.md)
 - [장인정신](craftsmanship/README.md)
