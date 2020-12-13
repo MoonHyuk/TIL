@@ -18,6 +18,8 @@ https://moonhyuk.github.io/TIL/
   - [Laravel](web/laravel/README.md)
 - 네트워크
   - [gRPC](network/grpc.md)
+- 내 생각들
+  - [내 PS 공부법이 틀렸던 이유](thinks/내-ps-공부법이-틀렸던-이유.md)
 - [장인정신](craftsmanship/README.md)
 - [뻘짓들](meaningless/README.md)
 - 연습
