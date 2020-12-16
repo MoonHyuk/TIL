@@ -4,6 +4,9 @@ https://moonhyuk.github.io/TIL/
 
 ## 목차
 
+- 프로그래밍 언어
+  - [javascript](language/javascript/README.md)
+  - [python](language/python/README.md)
 - 아키텍처
   - [OOP](architecture/oop.md)
   - [마이크로서비스 아키텍처](architecture/microservice.md)
@@ -12,7 +15,6 @@ https://moonhyuk.github.io/TIL/
   - [포스텔의 법칙](architecture/postels_law.md)
 - WEB
   - [CSS](web/css/README.md)
-  - [javascript](web/javascript/README.md)
   - [프론트엔드 개발환경의 이해와 실습](web/frontend-dev-environment/README.md)
   - [React.js](web/reactjs/README.md)
   - [Laravel](web/laravel/README.md)
