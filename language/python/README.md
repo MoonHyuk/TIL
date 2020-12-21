@@ -5,6 +5,7 @@
 - [s = s[::-1] vs s[:] = s[::-1]](#s--s-1-vs-s--s-1)
 - [collections](#collections)
 - [불변객체](#불변객체)
+- [바다코끼리 연산자](#바다코끼리-연산자)
 
 ## s = s[::-1] vs s[:] = s[::-1]
 
@@ -177,4 +178,89 @@ b = b + 1
 
 print(a) # 10
 print(b) # 11
+```
+
+## 바다코끼리 연산자
+
+바다코끼리 연산자는 버전 `3.8`에 새롭게 추가되었으며 `:=` 이렇게 생긴 연산자이다. 생긴 모양이 바다코끼리가 옆으로 누운 모습같아서 바다코끼리 연산자라고 이름이 붙여졌다.
+
+`:=` 연산자가 어떨 때 쓰이는지는 아래 예시를 보면 이해가 쉽다.
+
+```python
+# 문제의 코드
+
+if f(x) > 10:
+    print(f(x)) # f(x)를 두 번 호출하게 됨.
+```
+
+```python
+# f(x) 중복 호출을 방지하기 위해 값을 변수에 담아두었다.
+# 하지만 한 줄이 더 늘었다.
+
+y = f(x)
+if y > 10:
+    print(y)
+```
+
+```python
+# 이런 상황에서 := 연산자를 사용하면 줄이 추가되지 않아도 된다!
+
+if (y := f(x)) > 10:
+    print(y)
+```
+
+또 `:=`연산자를 사용하여 중첩 `if`문을 하나의 `if`문으로 바꿀 수 있는 경우도 있다.
+
+아래 예시들은 [PEP 572](https://www.python.org/dev/peps/pep-0572)에서 가져왔다.
+
+예시1)
+```python
+# 고치기 전 코드
+
+diff = x - x_base
+if diff:
+    g = gcd(diff, n)
+    if g > 1:
+        return g
+
+```
+
+```python
+# := 연산자를 사용하여 고친 코드
+
+if (diff := x - x_base) and (g := gcd(diff, n)) > 1:
+    return g
+```
+
+예시2)
+```python
+# 고치기 전 코드
+
+reductor = dispatch_table.get(cls)
+if reductor:
+    rv = reductor(x)
+else:
+    reductor = getattr(x, "__reduce_ex__", None)
+    if reductor:
+        rv = reductor(4)
+    else:
+        reductor = getattr(x, "__reduce__", None)
+        if reductor:
+            rv = reductor()
+        else:
+            raise Error("un(shallow)copyable object of type %s" % cls)
+
+```
+
+```python
+# := 연산자를 사용하여 고친 코드
+
+if reductor := dispatch_table.get(cls):
+    rv = reductor(x)
+elif reductor := getattr(x, "__reduce_ex__", None):
+    rv = reductor(4)
+elif reductor := getattr(x, "__reduce__", None):
+    rv = reductor()
+else:
+    raise Error("un(shallow)copyable object of type %s" % cls)
 ```
