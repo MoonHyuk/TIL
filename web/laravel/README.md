@@ -1,5 +1,10 @@
 # Laravel
 
+## 목차
+
+- [API 테스트 시 어떤 오류가 났는지 확인하는 방법](#api-테스트-시-어떤-오류가-났는지-확인하는-방법)
+- [서비스 컨테이너](#서비스-컨테이너)
+
 ## API 테스트 시 어떤 오류가 났는지 확인하는 방법
 
 ### 문제점
@@ -132,3 +137,34 @@ Illuminate\Validation\ValidationException: The given data was invalid.
  `$this->handleValidationExceptions();`를 사용한다.
 
 메소드 이름 그대로 `ValidationException`만 핸들링하고, 다른 Exception들은 오류를 내줄 것이다.
+
+## 서비스 컨테이너
+
+서비스 컨테이너는 라라벨에서 클래스 간 의존성을 제어할 수 있게 해준다. 서비스 컨테이너를 사용하게 되는 경우는 두가지이다.
+
+1. 인터페이스를 구현한 특정 구체 클래스를 사용하겠다고 알리고 싶을 때
+2. 라라벨 패키지를 만들었을 때
+
+대부분의 경우엔 1번 이유로 서비스 컨테이너를 사용하게 될 것 같다.
+
+예를들어 `EventPusher` 인터페이스를 사용하는 어떤 클래스가 있다고 하자.
+
+```php
+use App\Contracts\EventPusher;
+
+public function __construct(EventPusher $pusher)
+{
+    $this->pusher = $pusher;
+}
+```
+
+그리고 지금은 `EventPusher` 인터페이스를 구현한 `RedisEventPusher` 구체 클래스를 사용하고 싶다면 서비스 컨테이너에 아래처럼 구체 클래스를 바인딩해준다.
+
+```php
+use App\Contrats\EventPusher;
+use App\Services\RedisEventPusher;
+
+$this->app->bind(EventPusher::class, RedisEventPusher::class);
+```
+
+만약 나중에 `MysqlEventPusher`가 구현되어 구체 클래스를 바꾸고 싶다면 서비스 컨테이너만 수정해주면 된다.
