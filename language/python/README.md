@@ -33,7 +33,21 @@ s = s[::-1]
 print(id(s))  # 140338575384512
 ```
 
-첫 번째 구문은 배열을 새로 만들고 s 변수에 재할당을 하여 메모리 주소가 바뀌었다. leetcode 문제 조건에서 공간 복잡도를 `O(1)`로 사용하라 했는데 다른 공간을 더 사용했으므로 오답이 된 것이다.
+첫 번째 구문은 배열을 새로 만들고 s 변수에 재할당을 하여 메모리 주소가 바뀌었다. 
+
+leetcode 문제에서는 `reverseString` 메소드를 구현해서 인자로 넘어온 리스트의 순서를 바꿔야 했는데, `s = s[::-1]`를 쓰면 재할달을 하여 id가 다른 새로운 객체를 만드는 것이므로 기존 리스트는 바뀌지 않는다.
+
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        s = s[::-1]
+
+
+inp = ["h","e","l","l","o"]
+Solution().reverseString(inp)
+
+print(inp) # ['h', 'e', 'l', 'l', 'o']
+```
 
 ```python
 print(id(s))  # 140707976918720
@@ -47,6 +61,20 @@ print(id(s))  # 140707976918720
 
 ```python
 s[0], s[1], s[2] = s[::-1]  # (s의 크기가 3이라고 가정함)
+```
+
+이젠 인자로 넘겨준 리스트가 바뀐다.
+
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        s[:] = s[::-1]
+
+
+inp = ["h","e","l","l","o"]
+Solution().reverseString(inp) # ['o', 'l', 'l', 'e', 'h']
+
+print(inp)
 ```
 
 비슷한 원리로 이렇게 쓰는 것도 가능하다.
