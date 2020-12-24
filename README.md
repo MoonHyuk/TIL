@@ -5,6 +5,7 @@ https://moonhyuk.github.io/TIL/
 ## 목차
 
 - 프로그래밍 언어
+  - [일반](language/general/README.md)
   - [javascript](language/javascript/README.md)
   - [python](language/python/README.md)
 - 아키텍처
