@@ -8,6 +8,7 @@ https://moonhyuk.github.io/TIL/
   - [일반](language/general/README.md)
   - [javascript](language/javascript/README.md)
   - [python](language/python/README.md)
+  - [go](language/go/README.md)
 - 아키텍처
   - [OOP](architecture/oop.md)
   - [마이크로서비스 아키텍처](architecture/microservice.md)
