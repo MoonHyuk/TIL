@@ -15,6 +15,7 @@ https://moonhyuk.github.io/TIL/
   - [퍼사드 패턴](architecture/facade.md)
   - [팩토리 패턴](architecture/factory.md)
   - [포스텔의 법칙](architecture/postels_law.md)
+  - [육각형 아키텍처](architecture/hexagonal_architecture.md)
 - WEB
   - [CSS](web/css/README.md)
   - [프론트엔드 개발환경의 이해와 실습](web/frontend-dev-environment/README.md)
