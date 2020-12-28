@@ -11,6 +11,7 @@ https://moonhyuk.github.io/TIL/
   - [go](language/go/README.md)
 - 아키텍처
   - [OOP](architecture/oop.md)
+  - [도메인 주도 설계](architecture/ddd.md)
   - [마이크로서비스 아키텍처](architecture/microservice.md)
   - [퍼사드 패턴](architecture/facade.md)
   - [팩토리 패턴](architecture/factory.md)
