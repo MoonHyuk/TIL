@@ -5,6 +5,7 @@
 - [변수 선언](#변수-선언)
 - [반복문](#반복문)
 - [외부에 패키지 감추기](#외부에-패키지-감추기)
+- [test setup and teardown](#test-setup-and-teardown)
 
 ---
 
@@ -136,4 +137,33 @@ my-module/
 ```go
 import "github.com/xxxx/my-module/product" // 가능
 import "github.com/xxxx/my-module/internal/repository" // 불가능
+```
+
+---
+
+## test setup and teardown
+
+테스트 케이스 실행 전에 테스트 객체 생성이나 메모리 데이터베이스 마이그레이션 등 테스트 환경을 준비(`setup`)하고, 테스트 실행 후에는 정리(`teardown`)하려면 테스트 파일 안에  `TestMain` 이라는 이름의 특수한 함수를 작성한다.
+
+```go
+func TestMain(m *testing.M) {
+	// do setup
+    fmt.Println("setup")
+	exitVal := m.Run()
+    // do teardown
+    fmt.Println("teardown")
+	os.Exit(exitVal)
+}
+```
+
+실행 결과는 아래처럼 나온다.
+
+```
+setup
+=== RUN   TestExample1
+--- PASS: TestExample1 (0.00s)
+=== RUN   TestExample2
+--- PASS: TestExample2 (0.00s)
+PASS
+teardown
 ```
