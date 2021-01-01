@@ -4,6 +4,7 @@
 
 - [변수 선언](#변수-선언)
 - [반복문](#반복문)
+- [외부에 패키지 감추기](#외부에-패키지-감추기)
 
 ---
 
@@ -92,4 +93,47 @@ s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 for _, i := range s {
 	fmt.Println(i)
 }
+```
+
+---
+
+## 외부에 패키지 감추기
+
+Go 모듈을 작성하다 보면 여러 패키지로 분리해야 할 때도 있다. 예를들어 온라인 쇼핑몰 솔루션을 위해 `제품 관리 모듈`을 만든다고 해보자.  이 모듈은 여러 비즈니스 로직을 갖고 있는 `제품 엔티티 패키지`를 제공해야 한다. 제품 엔티티가 제대로 작동하려면 데이터를 저장하거나 불러오는 로직도 있어야 한다. 데이터 접근 로직이 비즈니스 로직을 더럽히는 것이 싫어 `저장소 패키지`를 따로 만들었다. 
+
+```
+my-module/
+  product/
+    product.go
+  repository/
+    model.go
+    repository.go
+```
+
+하지만 여기서 문제가 생긴다. 외부 모듈에서 `제품 엔티티 패키지` 뿐 만 아니라 `저장소 패키지`도 접근이 가능해진다. 
+
+```go
+import "github.com/xxxx/my-module/product" // 가능
+import "github.com/xxxx/my-module/repository" // 가능
+```
+
+저장소 관련 로직은 너무 세부사항이기 때문에 외부에 알려지는 게 좋지 않다. `저장소 패키지`의 변수와 함수들을 export 하지 않으면 되지 않을까 잠깐 생각해봤지만, 그러면 `제품 엔티티 패키지`에서도 `저장소 패키지`를 사용할 수 없다.
+
+이럴 때 사용하는 것이 `internal` 폴더이다.
+
+```
+my-module/
+  product/
+    product.go
+  internal/
+    repository/
+      model.go
+      repository.go
+```
+
+외부에 공개하고 싶지 않은 패키지들을 `internal` 폴더 아래에 배치하면, 같은 모듈 내에선 그 패키지를 불러올 수 있지만 외부에선 접근이 불가능하다.
+
+```go
+import "github.com/xxxx/my-module/product" // 가능
+import "github.com/xxxx/my-module/internal/repository" // 불가능
 ```
