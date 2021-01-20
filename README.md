@@ -27,6 +27,8 @@ https://moonhyuk.github.io/TIL/
   - [Laravel](web/laravel/README.md)
 - 네트워크
   - [gRPC](network/grpc.md)
+- 강의 정리
+  - [인프런 JPA 프로그래밍 기본편 - 김영한 선생님](lectures/inflearn-jpa-basic/README.md)
 - 내 생각들
   - [내 PS 공부법이 틀렸던 이유](thinks/내-ps-공부법이-틀렸던-이유.md)
 - [장인정신](craftsmanship/README.md)
