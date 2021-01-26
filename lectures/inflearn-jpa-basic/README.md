@@ -193,3 +193,81 @@ System.out.println(memberTeam.getClass()); // class hellojpa.Team$HibernateProxy
 - `emf.getPersistenceUnitUtil().isLoaded(entity)`: 프록시 객체가 초기화 됐는지 확인
 - `org.hibernate.Hibernate.initialize(entity)`: 프록시 강제 초기화
 
+## 8-2) 즉시 로딩과 지연 로딩
+
+엔티티에서 관계 설정할 때 `fetch` 설정으로 즉시 로딩 또는 지연 로딩을 설정할 수 있다.
+
+**실무에서는 즉시 로딩을 사용하면 안된다.**
+
+- 즉시 로딩 설정을 하고 JPQL select 문을 쓰면 N+1 Problem이 발생한다.
+
+  - `List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();` 을 실행하면 아래처럼 여러개의 쿼리가 나간다.
+
+  - ```
+    Hibernate: 
+        /* select
+            m 
+        from
+            Member m */ select
+                member0_.id as id1_0_,
+                member0_.name as name2_0_,
+                member0_.team_id as team_id3_0_ 
+            from
+                Member member0_
+    Hibernate: 
+        select
+            team0_.id as id1_1_0_ 
+        from
+            Team team0_ 
+        where
+            team0_.id=?
+    Hibernate: 
+        select
+            team0_.id as id1_1_0_ 
+        from
+            Team team0_ 
+        where
+            team0_.id=?
+    Hibernate: 
+        select
+            team0_.id as id1_1_0_ 
+        from
+            Team team0_ 
+        where
+            team0_.id=?
+    ...
+    ```
+
+  - 이런 악영향을 줄이려면 **가능한 지연 로딩을 사용**하고 N+1 problem 없이 연관 관계를 같이 불러오고 싶을 땐
+
+    - fetch join을 사용하거나
+    - batch size 설정을 해준다.
+
+  - **ManyToOne, OneToOne 관게는 기본 값이 즉시 로딩이므로 이를 지연 로딩으로 바꿔줘야 한다.**
+
+
+
+### 8-3) CASCADE
+
+`@OneToMany(cascade=CascadeType.ALL)`
+
+### 8-4) orphanRemoval
+
+`@OneToMany(orphanRemoval = true)` 옵션을 사용하면 관계가 끊긴 자식은 자동으로 삭제된다.
+
+예를들어 
+
+```java
+Team findTeam = em.createQuery("select t from Team t join fetch t.members where t.id = :teamId", Team.class)
+        .setParameter("teamId", 1L)
+        .getSingleResult();
+
+findTeam.getMembers().remove(0); // findTeam과 0번째 멤버의 관계가 끊어지고 0번째 멤버가 데이터베이스에서 삭제된다.
+
+em.remove(findTeam); // findTeam과 관계가 있는 members가 모두 삭제된다. cascade=CascadeType.REMOVE 와 동작이 같다.
+```
+
+orphanRemoval 옵션은 자식 객체를 참조하는 부모 객체가 하나일 때만 사용해야 안전하다.
+
+`cascade=CascadeType.ALL`과 `orphanRemoval=true` 를 함께 사용하면 DDD에서의 애그리거트 루트 엔티티 개념을 구현할 수 있다.
+
