@@ -271,3 +271,56 @@ orphanRemoval 옵션은 자식 객체를 참조하는 부모 객체가 하나일
 
 `cascade=CascadeType.ALL`과 `orphanRemoval=true` 를 함께 사용하면 DDD에서의 애그리거트 루트 엔티티 개념을 구현할 수 있다.
 
+
+
+## 10. JPQL
+
+### 10-4) 페치 조인
+
+페치 조인은 하나의 쿼리로 연관 객체를 모두 가져오고 싶을 때 사용한다.
+
+예를들어 team을 조회하면서 team에 소속된 모든 members를 함께 조회하고 싶을 때 사용한다.
+
+
+
+#### 주의
+
+- members 내에서 조건절로 일부만 가져오고 싶다면 페치 조인 말고 다른 방법을 사용하자.
+  - team.getMembers() 했을 때 전체 members가 아닌 일부 members만 나오는 건 JPA 설계에 맞지 않음
+
+- collection을 페치 조인할 경우 데이터 뻥튀기가 일어나 데이터 갯수가 실제와 달라진다.
+
+  - 예를들어 team1에는 member1과 member2가 있고 team2에는 member3이 있다면
+
+  - ```java
+    List<Team> teams = em.createQuery("select t from Team t join fetch t.members", Team.class)
+             .getResultList();
+    
+    System.out.println("teams.size() = " + teams.size());
+    for (Team t : teams) {
+        for (Member tMember : t.getMembers()) {
+            System.out.println("teamId: " + t.getId() + ", memberId: " + tMember.getId());
+        }
+    }
+    
+    // 실행결과:
+    // teams.size() = 3
+    // teamId: 1, memberId: 1
+    // teamId: 1, memberId: 2
+    // teamId: 1, memberId: 1
+    // teamId: 1, memberId: 2
+    // teamId: 2, memberId: 3
+    ```
+
+  - 위 예시를 보면 teams 컬렉션 안에 team1이 두 번 들어가서 size가 3이다. member의 수 만큼 team이 중복되어 들어가진다.
+
+  - 만약 중복되는 걸 원치 않는다면 `select distinct ...` 를 사용하면 된다.
+
+- 두 개 이상의 collection을 한 번에 페치 조인 하지 말아야 한다. (데이터 뻥튀기가 두번 되어 데이터가 너무 많아짐)
+- collection을 페치 조인한 경우 페이징은 사용하면 안된다.
+  - 일대일, 다대일 같은 단일값 연관 필드들은 페치 조인해도 페이징 가능
+  - 페이징 API를 사용할 경우 하이버네이트는 경고 로그를 남기며 테이블의 모든 데이터를 메모리에 올린 후 페이징 처리한다. 이는 성능에 매우 매우 안좋음.
+  - 페이징을 사용하면서 N+1 Problem을 겪지 않고 싶은 경우엔
+    - 반대쪽 엔티티에서 페치 조인을 하거나(비즈니스 로직이 허락한다면)
+    - `@BatchSize(size = ...)` 어노테이션 또는 글로벌 세팅 `hibernate.default_batch_fetch_size` 사용 - 연관 객체를 가져올 때 `in` 을 사용하여 한번에 size만큼 가져온다. N+1 Problem을 줄여줌.
+  - 여러 테이블을 조인해서 엔티티가 가진 모양이 아닌 전혀 다른 결과를 내야 한다면 페치 조인 보다는 일반 조인을 사용하고 필요 한 데이터들만 조회해서 DTO로 반환하는 것이 효과적
