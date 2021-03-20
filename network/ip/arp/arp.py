@@ -1,29 +1,70 @@
 from collections import defaultdict
 
+EMPTY_IP_ADDRESS = '0.0.0.0'
+EMPTY_MAC_ADDRESS = '00:00:00:00:00:00'
+BROADCAST_MAC_ADDRESS = 'ff:ff:ff:ff:ff:ff'
+ARP_REQUEST = 1
+ARP_REPLY = 2
 
-class Network:
+
+class ARPPacket:
+    def __init__(self, opcode: int, sender_ip: str, sender_mac: str, target_ip: str, target_mac: str):
+        self.opcode = opcode
+        self.sender_ip = sender_ip
+        self.sender_mac = sender_mac
+        self.target_ip = target_ip
+        self.target_mac = target_mac
+
+
+class Frame:
+    def __init__(self, source: str, destination: str, arp_packet: ARPPacket):
+        self.source = source
+        self.destination = destination
+        self.arp_packet = arp_packet
+
+
+class Link:
     def __init__(self):
         self.nodes = []
 
+    def send(self, frame: Frame):
+        if frame.destination == BROADCAST_MAC_ADDRESS:
+            dest_nodes = [node for node in self.nodes if node.mac != frame.source]
+
+            for dest_node in dest_nodes:
+                dest_node.receive(frame)
+
+        else:
+            dest_node = [node for node in self.nodes if node.mac == frame.destination][0]
+
+            dest_node.receive(frame)
+
 
 class Node:
-
-    def __init__(self, network, ip: str, mac: str):
+    def __init__(self, link: Link, ip: str, mac: str):
         self._ip = ip
         self.mac = mac
         self.arp_cache = defaultdict(str)
-        self.network = network
-        self.network.nodes.append(self)
+        self.link = link
+        self.link.nodes.append(self)
 
         if not self.__acd_probe():
-            raise ValueError(f"The IP address {self._ip} already exists")
+            print(f"The IP address {self._ip} already exists")
+            return
 
         self.__acd_announcement()
 
-    def __acd_probe(self):
-        request_packet = ARPPacket(1, "0.0.0.0", self.mac, self._ip, "00:00:00:00:00:00")
+    def __send(self, arp_packet: ARPPacket):
+        destination = BROADCAST_MAC_ADDRESS if arp_packet.opcode == ARP_REQUEST \
+            else arp_packet.target_mac
 
-        self.__broadcast(request_packet)
+        frame = Frame(self.mac, destination, arp_packet)
+
+        self.link.send(frame)
+
+    def __acd_probe(self):
+        arp_packet = ARPPacket(ARP_REQUEST, EMPTY_IP_ADDRESS, self.mac, self._ip, EMPTY_MAC_ADDRESS)
+        self.__send(arp_packet)
 
         if self._ip in self.arp_cache:
             return False
@@ -31,50 +72,31 @@ class Node:
         return True
 
     def __acd_announcement(self):
-        request_packet = ARPPacket(1, self._ip, self.mac, self._ip, "00:00:00:00:00:00")
-
-        self.__broadcast(request_packet)
-
-    def __receive(self, arp_packet):
-        if arp_packet.opcode == 1:
-            if arp_packet.target_ip == self._ip:
-                self.arp_cache[arp_packet.sender_ip] = arp_packet.sender_mac
-
-                reply_packet = ARPPacket(2, self._ip, self.mac, arp_packet.sender_ip, arp_packet.sender_mac)
-                self.__unicast(arp_packet.sender_mac, reply_packet)
-
-            elif arp_packet.sender_ip in self.arp_cache:
-                self.arp_cache[arp_packet.sender_ip] = arp_packet.sender_mac
-
-        elif arp_packet.opcode == 2:
-            self.arp_cache[arp_packet.sender_ip] = arp_packet.sender_mac
-
-    def __unicast(self, target_mac, packet):
-        target = [node for node in self.network.nodes if node.mac == target_mac][0]
-        target.__receive(packet)
-
-    def __broadcast(self, packet):
-        same_network_nodes = [node for node in self.network.nodes if node is not self]
-
-        for node in same_network_nodes:
-            node.__receive(packet)
+        arp_packet = ARPPacket(ARP_REQUEST, self._ip, self.mac, self._ip, EMPTY_MAC_ADDRESS)
+        self.__send(arp_packet)
 
     def request(self, target_ip):
         if target_ip in self.arp_cache:
             print("find in cache")
             return self.arp_cache[target_ip]
 
-        request_packet = ARPPacket(1, self._ip, self.mac, target_ip, "00:00:00:00:00:00")
-
-        self.__broadcast(request_packet)
+        arp_packet = ARPPacket(ARP_REQUEST, self._ip, self.mac, target_ip, EMPTY_MAC_ADDRESS)
+        self.__send(arp_packet)
 
         return self.arp_cache[target_ip]
 
+    def receive(self, frame: Frame):
+        arp_packet = frame.arp_packet
 
-class ARPPacket:
-    def __init__(self, opcode, sender_ip, sender_mac, target_ip, target_mac):
-        self.opcode = opcode
-        self.sender_ip = sender_ip
-        self.sender_mac = sender_mac
-        self.target_ip = target_ip
-        self.target_mac = target_mac
+        if arp_packet.opcode == ARP_REQUEST:
+            if arp_packet.target_ip == self._ip:
+                self.arp_cache[arp_packet.sender_ip] = arp_packet.sender_mac
+
+                reply_packet = ARPPacket(ARP_REPLY, self._ip, self.mac, arp_packet.sender_ip, arp_packet.sender_mac)
+                self.__send(reply_packet)
+
+            elif arp_packet.sender_ip in self.arp_cache:
+                self.arp_cache[arp_packet.sender_ip] = arp_packet.sender_mac
+
+        elif arp_packet.opcode == ARP_REPLY:
+            self.arp_cache[arp_packet.sender_ip] = arp_packet.sender_mac
